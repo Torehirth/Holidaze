@@ -4,12 +4,12 @@ import { Footer } from "./Footer/Footer";
 
 export const RootLayout = () => {
   return (
-    <div>
+    <>
       <Header />
       <main>
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   );
 };

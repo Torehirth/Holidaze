@@ -7,11 +7,20 @@
   }
 
   body {
-    min-height: 100vh;
     font-family: var(--font-sans);
     background-color: var(--color-background);
     color: var(--color-foreground);
     line-height: 1.5;
+  }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  footer {
+    margin-top: auto;
   }
 
   h1,

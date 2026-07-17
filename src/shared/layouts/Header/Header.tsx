@@ -17,7 +17,7 @@ export const Header = () => {
 
   return (
     <header className="border-border-light relative h-20 border-b">
-      <div className="flex h-full items-center justify-between px-8">
+      <div className="flex h-full items-center justify-between px-4 md:px-8">
         <NavLink
           to="/"
           className="hover:opacity-80 active:scale-95"

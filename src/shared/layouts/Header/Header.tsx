@@ -37,7 +37,7 @@ export const Header = () => {
           <NavLink
             to="/venues"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
-            Explore
+            Venues
           </NavLink>
           <NavLink
             to="/profile"

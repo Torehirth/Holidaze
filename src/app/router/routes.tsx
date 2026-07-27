@@ -52,9 +52,6 @@ export const routes: RouteObject[] = [
         element: <BookingsDashboardPage />,
       },
       {
-        path: "register",
-        element: <RegisterPage />,
-      },
     ],
   },
 ];

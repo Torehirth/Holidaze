@@ -1,10 +1,10 @@
 import { Link } from "react-router";
 
-export const VenueManagerDashboardPage = () => {
+export const BookingsDashboardPage = () => {
   return (
     <>
       <div className="p-8">
-        <h1 className="p-4 pb-4">Dashboard page</h1>
+        <h1 className="p-4 pb-4">Booking Dashboard page</h1>
         <Link to="/" className="px-2">
           Home
         </Link>

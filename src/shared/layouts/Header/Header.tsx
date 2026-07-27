@@ -13,7 +13,7 @@ export const Header = () => {
   const initialClass = `px-2 hover:opacity-70 active:scale-90`;
   const activeClass = `border-primary border-b ${initialClass}`;
   const initialClassMobile = `px-2 hover:opacity-70 active:scale-90`;
-  const activeClassMobile = `border-background border-b border- ${initialClass}`;
+  const activeClassMobile = `border-background border-b ${initialClassMobile}`;
 
   return (
     <header className="border-border-light relative h-20 border-b">

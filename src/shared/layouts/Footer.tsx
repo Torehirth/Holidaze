@@ -6,7 +6,7 @@ import {
   faSquareLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { NavLink } from "react-router";
-import logo from "../../assets/logo/logo_small.svg";
+import logo from "../assets/logo/logo_small.svg";
 
 export const Footer = () => {
   const activeClass = "font-bold";
@@ -17,7 +17,7 @@ export const Footer = () => {
   return (
     <footer className="bg-secondary w-full px-4 pt-12 md:p-8">
       <div className="flex flex-col items-start pb-8 md:flex-row md:items-center md:justify-between">
-        <img src={logo} alt="Holidaze" className="max-h-8" />
+        <img src={logo} alt="Holidaze logo" className="max-h-8" />
         <nav
           aria-label="Footer navigation"
           className="flex flex-col gap-2 pt-8 md:flex-row md:gap-8">

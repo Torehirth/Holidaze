@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import { Menu, User, X } from "lucide-react";
-import logo from "../../assets/logo/logo_small.svg";
+import logo from "../assets/logo/logo_small.svg";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +22,7 @@ export const Header = () => {
           to="/"
           className="hover:opacity-80 active:scale-95"
           aria-label="Go to Holidaze homepage">
-          <img src={logo} alt="" />
+          <img src={logo} alt="Holidaze logo" />
         </NavLink>
 
         {/* Desktop navigation */}

@@ -1,9 +1,17 @@
+import { CTASection } from "../components/CTASection";
+import { FeaturedStays } from "../components/FeaturedStays";
+import { PopularDestinations } from "../components/PopularDestinations";
+import { WhyChooseHolidaze } from "../components/WhyChooseHolidaze";
+import { Hero } from "./../components/Hero";
+
 export const HomePage = () => {
   return (
     <>
-      <div className="flex flex-col gap-8 px-2 py-8">
-        <h1 className="p-2 pb-4 text-2xl">Home Page</h1>
-      </div>
+      <Hero />
+      <FeaturedStays />
+      <PopularDestinations />
+      <WhyChooseHolidaze />
+      <CTASection />
     </>
   );
 };

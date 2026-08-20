@@ -51,7 +51,6 @@ export const routes: RouteObject[] = [
         path: "dashboard",
         element: <BookingsDashboardPage />,
       },
-      {
     ],
   },
 ];

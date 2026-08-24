@@ -1,17 +1,100 @@
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { VenueCard } from "../../../shared/components/ui/VenueCard";
+import type { APIMetaTypes, Venue } from "../../../shared/types/venue";
+import { getVenues } from "../services/getVenues";
+import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
+import { Loader } from "../../../shared/components/ui/Loader";
+import { Button } from "../../../shared/components/ui/buttons/Button";
 
 export const VenuesPage = () => {
+  const [venues, setVenues] = useState<Venue[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [meta, setMeta] = useState<APIMetaTypes | null>(null);
+  const [page, setPage] = useState<number>(1);
+
+  const handleLoadMore = () => {
+    if (loading) return;
+
+    setLoading(true);
+    setPage((pageNumber) => pageNumber + 1);
+  };
+
+  useEffect(() => {
+    const loadVenues = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const result = await getVenues(page);
+
+        setVenues((currentVenues) =>
+          page === 1 ? result.data : [...currentVenues, ...result.data]
+        );
+
+        setMeta(result.meta);
+      } catch (caughtError) {
+        if (caughtError instanceof Error) {
+          setError(caughtError.message);
+        } else {
+          setError("Couldn't display venues. Try again later.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadVenues();
+  }, [page]);
+
   return (
-    <>
-      <div className="p-8">
-        <h1 className="p-4 pb-4">Venues Page</h1>
-        <Link to="/login" className="px-2">
-          Login
-        </Link>
-        <Link to="/" className="px-2">
-          Home
-        </Link>
+    <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <header className="mb-8">
+        <h1 className="text-2xl font-medium">Explore venues</h1>
+        <p className="mt-2">Find the perfect place for your next stay.</p>
+        <div>
+          {!error && !loading && meta && (
+            <p className="mt-2 text-sm">{meta?.totalCount} properties found</p>
+          )}
+        </div>
+      </header>
+      <div>
+        {loading && venues.length === 0 && <Loader />}
+        {error && (
+          <FeedbackMessage
+            variant="error"
+            title="Loading venues failed"
+            message={error}
+          />
+        )}
+        {venues.length > 0 && (
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {venues.map(
+              ({ id, name, description, price, media, rating, location, maxGuests }) => (
+                <li key={id}>
+                  <VenueCard
+                    id={id}
+                    name={name}
+                    description={description}
+                    price={price}
+                    imageURL={media[0]?.url}
+                    imageAlt={media[0]?.alt}
+                    rating={rating}
+                    city={location.city}
+                    country={location.country}
+                    guests={maxGuests}
+                  />
+                </li>
+              )
+            )}
+          </ul>
+        )}
+        {!meta?.isLastPage && !error && (
+          <div className="flex justify-center py-12">
+            <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
+              {loading ? "Loading..." : "Load more"}
+            </Button>
+          </div>
+        )}
       </div>
-    </>
+    </section>
   );
 };

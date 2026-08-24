@@ -1,5 +1,5 @@
 import { Home, Search } from "lucide-react";
-import { ButtonLink } from "../../../shared/components/ui/ButtonLink";
+import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
 
 export function NotFoundPage() {
   return (

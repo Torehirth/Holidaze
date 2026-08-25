@@ -5,6 +5,8 @@ import { getVenues } from "../services/getVenues";
 import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
+import { useSearchParams } from "react-router";
+import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
 
 export const VenuesPage = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -12,6 +14,12 @@ export const VenuesPage = () => {
   const [loading, setLoading] = useState(true);
   const [meta, setMeta] = useState<APIMetaTypes | null>(null);
   const [page, setPage] = useState<number>(1);
+  const [searchParam] = useSearchParams();
+
+  const query = searchParam.get("q") ?? "";
+
+  const noSearchResults = !loading && !error && query !== "" && meta?.totalCount === 0;
+  const notFoundMessage = `No venues found for "${query}". Try another search.`;
 
   const handleLoadMore = () => {
     if (loading) return;
@@ -25,7 +33,7 @@ export const VenuesPage = () => {
       try {
         setLoading(true);
         setError(null);
-        const result = await getVenues(page);
+        const result = await getVenues(page, query);
 
         setVenues((currentVenues) =>
           page === 1 ? result.data : [...currentVenues, ...result.data]
@@ -43,7 +51,7 @@ export const VenuesPage = () => {
       }
     };
     loadVenues();
-  }, [page]);
+  }, [page, query]);
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -57,6 +65,22 @@ export const VenuesPage = () => {
         </div>
       </header>
       <div>
+        {noSearchResults && (
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-fit">
+              <FeedbackMessage
+                variant="warning"
+                title="No venues found"
+                message={notFoundMessage}
+              />
+            </div>
+            <div className="mt-4 flex justify-center">
+              <ButtonLink to="/" variant="primary">
+                Search again
+              </ButtonLink>
+            </div>
+          </div>
+        )}
         {loading && venues.length === 0 && <Loader />}
         {error && (
           <FeedbackMessage
@@ -66,7 +90,7 @@ export const VenuesPage = () => {
           />
         )}
         {venues.length > 0 && (
-          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {venues.map(
               ({ id, name, description, price, media, rating, location, maxGuests }) => (
                 <li key={id}>
@@ -87,7 +111,7 @@ export const VenuesPage = () => {
             )}
           </ul>
         )}
-        {!meta?.isLastPage && !error && (
+        {meta && !meta.isLastPage && !error && (
           <div className="flex justify-center py-12">
             <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
               {loading ? "Loading..." : "Load more"}

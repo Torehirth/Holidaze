@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 type ButtonLinkProps = {
   to: string;
-  variant: "primary" | "secondary" | "outline" | "ghost";
+  variant: "primary" | "secondary";
   children: ReactNode;
 };
 
@@ -27,9 +27,7 @@ export const ButtonLink = ({ to, variant, children }: ButtonLinkProps) => {
 
   const variants = {
     primary: "bg-primary text-white",
-    secondary: "bg-secondary text-foreground border border-border",
-    outline: "bg-background text-foreground border border-border",
-    ghost: "bg-transparent text-foreground",
+    secondary: "bg-background text-foreground border border-border",
   };
 
   return (

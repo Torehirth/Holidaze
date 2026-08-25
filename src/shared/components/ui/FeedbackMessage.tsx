@@ -2,7 +2,7 @@ import { CircleAlert, CircleCheck, TriangleAlert } from "lucide-react";
 
 type FeedbackMessageProps = {
   variant: "error" | "warning" | "success";
-  title: string;
+  title?: string;
   message: string;
 };
 
@@ -27,7 +27,7 @@ const feedbackVariants = {
 export const FeedbackMessage = ({ variant, title, message }: FeedbackMessageProps) => {
   const { icon: Icon, containerClasses, iconClasses } = feedbackVariants[variant];
 
-  const ariaRole = variant === "success" ? "status" : "alert";
+  const ariaRole = variant === "success" ? "warning" : "alert";
 
   return (
     <div

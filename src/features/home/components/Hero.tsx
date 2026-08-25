@@ -13,9 +13,6 @@ export const Hero = () => {
         <h1 className="xs:pt-12 px-2 pt-4 pb-4 text-5xl md:pt-16 md:text-6xl">
           Find Your Perfect Escape
         </h1>
-        {/* <p className="text-xl md:text-2xl">
-          Discover unique stays and experiences around the world
-        </p> */}
       </article>
       <div className="-translate-y-20 lg:static lg:-mt-16 lg:translate-y-0">
         <VenuesSearchForm />

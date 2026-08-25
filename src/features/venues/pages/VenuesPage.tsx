@@ -6,6 +6,7 @@ import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useSearchParams } from "react-router";
+import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
 
 export const VenuesPage = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -65,11 +66,20 @@ export const VenuesPage = () => {
       </header>
       <div>
         {noSearchResults && (
-          <FeedbackMessage
-            variant="warning"
-            title="No venues found"
-            message={notFoundMessage}
-          />
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-fit">
+              <FeedbackMessage
+                variant="warning"
+                title="No venues found"
+                message={notFoundMessage}
+              />
+            </div>
+            <div className="mt-4 flex justify-center">
+              <ButtonLink to="/" variant="primary">
+                Search again
+              </ButtonLink>
+            </div>
+          </div>
         )}
         {loading && venues.length === 0 && <Loader />}
         {error && (
@@ -101,7 +111,7 @@ export const VenuesPage = () => {
             )}
           </ul>
         )}
-        {meta && !meta?.isLastPage && !error && (
+        {meta && !meta.isLastPage && !error && (
           <div className="flex justify-center py-12">
             <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
               {loading ? "Loading..." : "Load more"}

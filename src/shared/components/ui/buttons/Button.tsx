@@ -25,7 +25,7 @@ export const Button = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`rounded-xl px-6 py-3 font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 ${variantClasses}`}>
+      className={`flex items-center justify-center rounded-xl px-6 py-3 font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 ${variantClasses}`}>
       {children}
     </button>
   );

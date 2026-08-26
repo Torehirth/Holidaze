@@ -54,71 +54,83 @@ export const VenuesPage = () => {
   }, [page, query]);
 
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <header className="mb-8">
-        <h1 className="text-2xl font-medium">Explore venues</h1>
-        <p className="mt-2">Find the perfect place for your next stay.</p>
+    <>
+      <title>Venues | Holidaze</title>
+      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <header className="mb-8">
+          <h1 className="text-2xl font-medium">Explore venues</h1>
+          <p className="mt-2">Find the perfect place for your next stay.</p>
+          <div>
+            {!error && !loading && meta && (
+              <p className="mt-2 text-sm">{meta?.totalCount} properties found</p>
+            )}
+          </div>
+        </header>
         <div>
-          {!error && !loading && meta && (
-            <p className="mt-2 text-sm">{meta?.totalCount} properties found</p>
+          {noSearchResults && (
+            <div className="flex flex-col items-center justify-center">
+              <div className="w-fit">
+                <FeedbackMessage
+                  variant="warning"
+                  title="No venues found"
+                  message={notFoundMessage}
+                />
+              </div>
+              <div className="mt-4 flex justify-center">
+                <ButtonLink to="/" variant="primary">
+                  Search again
+                </ButtonLink>
+              </div>
+            </div>
+          )}
+          {loading && venues.length === 0 && <Loader />}
+          {error && (
+            <FeedbackMessage
+              variant="error"
+              title="Loading venues failed"
+              message={error}
+            />
+          )}
+          {venues.length > 0 && (
+            <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {venues.map(
+                ({
+                  id,
+                  name,
+                  description,
+                  price,
+                  media,
+                  rating,
+                  location,
+                  maxGuests,
+                }) => (
+                  <li key={id}>
+                    <VenueCard
+                      id={id}
+                      name={name}
+                      description={description}
+                      price={price}
+                      imageURL={media[0]?.url}
+                      imageAlt={media[0]?.alt}
+                      rating={rating}
+                      city={location.city}
+                      country={location.country}
+                      guests={maxGuests}
+                    />
+                  </li>
+                )
+              )}
+            </ul>
+          )}
+          {meta && !meta.isLastPage && !error && (
+            <div className="flex justify-center py-12">
+              <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
+                {loading ? "Loading..." : "Load more"}
+              </Button>
+            </div>
           )}
         </div>
-      </header>
-      <div>
-        {noSearchResults && (
-          <div className="flex flex-col items-center justify-center">
-            <div className="w-fit">
-              <FeedbackMessage
-                variant="warning"
-                title="No venues found"
-                message={notFoundMessage}
-              />
-            </div>
-            <div className="mt-4 flex justify-center">
-              <ButtonLink to="/" variant="primary">
-                Search again
-              </ButtonLink>
-            </div>
-          </div>
-        )}
-        {loading && venues.length === 0 && <Loader />}
-        {error && (
-          <FeedbackMessage
-            variant="error"
-            title="Loading venues failed"
-            message={error}
-          />
-        )}
-        {venues.length > 0 && (
-          <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {venues.map(
-              ({ id, name, description, price, media, rating, location, maxGuests }) => (
-                <li key={id}>
-                  <VenueCard
-                    id={id}
-                    name={name}
-                    description={description}
-                    price={price}
-                    imageURL={media[0]?.url}
-                    imageAlt={media[0]?.alt}
-                    rating={rating}
-                    city={location.city}
-                    country={location.country}
-                    guests={maxGuests}
-                  />
-                </li>
-              )
-            )}
-          </ul>
-        )}
-        {meta && !meta.isLastPage && !error && (
-          <div className="flex justify-center py-12">
-            <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
-              {loading ? "Loading..." : "Load more"}
-            </Button>
-          </div>
-        )}
-      </div>
-    </section>
+      </section>
+    </>
   );
 };

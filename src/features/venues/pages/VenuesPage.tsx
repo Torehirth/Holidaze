@@ -83,7 +83,7 @@ export const VenuesPage = () => {
               </div>
             </div>
           )}
-          {loading && venues.length === 0 && <Loader />}
+          {loading && !error && venues.length === 0 && <Loader />}
           {error && (
             <FeedbackMessage
               variant="error"
@@ -123,10 +123,12 @@ export const VenuesPage = () => {
             </ul>
           )}
           {meta && !meta.isLastPage && !error && (
-            <div className="flex justify-center py-12">
-              <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
-                {loading ? "Loading..." : "Load more"}
-              </Button>
+            <div className="flex justify-center">
+              <div className="w-fit py-8">
+                <Button variant="secondary" onClick={handleLoadMore} disabled={loading}>
+                  {loading ? "Loading..." : "Load more"}
+                </Button>
+              </div>
             </div>
           )}
         </div>

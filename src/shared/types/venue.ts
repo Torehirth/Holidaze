@@ -7,14 +7,18 @@ export type Venue = {
     alt: string;
   }[];
   location: {
-    city: string;
-    country: string;
+    city: string | null;
+    country: string | null;
   };
   maxGuests: number;
   rating: number;
   price: number;
-  bookings: VenueBookings[];
-  owner: VenueOwner;
+  meta: {
+    wifi: boolean;
+    parking: boolean;
+    breakfast: boolean;
+    pets: boolean;
+  };
 };
 
 export type APIMetaTypes = {
@@ -33,8 +37,13 @@ export type VenuesResponse = {
 };
 
 export type SingleVenueResponse = {
-  data: Venue;
+  data: Venue & VenueDetails;
   meta: object;
+};
+
+export type VenueDetails = {
+  bookings: VenueBookings[];
+  owner: VenueOwner;
 };
 
 type VenueOwner = {
@@ -71,4 +80,8 @@ type VenueBookings = {
   guests: number;
   id: string;
   updated: string;
+};
+
+export type VenueSectionProps = {
+  venue: Venue & VenueDetails;
 };

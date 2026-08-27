@@ -33,11 +33,10 @@ export const FeedbackMessage = ({ variant, title, message }: FeedbackMessageProp
     <div
       role={ariaRole}
       className={`flex w-full items-start gap-3 rounded-xl border p-4 shadow-sm ${containerClasses}`}>
-      <Icon aria-hidden="true" className={`mt-0.5 h-5 w-5 shrink-0 ${iconClasses}`} />
-
+      <Icon aria-hidden="true" className={`mt-1 h-6 w-6 ${iconClasses}`} />
       <div>
-        <p className="text-foreground font-medium">{title}</p>
-        <p className="text-muted-foreground mt-1 text-sm">{message}</p>
+        <p className="text-foreground text-lg font-medium">{title}</p>
+        <p className="mt-1 text-sm">{message}</p>
       </div>
     </div>
   );

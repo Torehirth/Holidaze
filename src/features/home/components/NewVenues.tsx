@@ -3,7 +3,7 @@ import { VenueCard } from "../../../shared/components/ui/VenueCard";
 import type { Venue } from "../../../shared/types/venue";
 import { getVenues } from "../../venues/services/getVenues";
 import { Loader } from "../../../shared/components/ui/Loader";
-import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
+import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 
 export const NewVenues = () => {
   const [venues, setVenues] = useState<Venue[]>([]);

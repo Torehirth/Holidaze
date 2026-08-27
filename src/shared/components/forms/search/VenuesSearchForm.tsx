@@ -1,8 +1,8 @@
 import { Search } from "lucide-react";
 import { useState, type SyntheticEvent } from "react";
 import { useNavigate } from "react-router";
-import { Button } from "../ui/buttons/Button";
-import { FeedbackMessage } from "../ui/FeedbackMessage";
+import { Button } from "../../ui/buttons/Button";
+import { FeedbackMessage } from "../../ui/feedback/FeedbackMessage";
 
 export const VenuesSearchForm = () => {
   const [query, setQuery] = useState<string>("");

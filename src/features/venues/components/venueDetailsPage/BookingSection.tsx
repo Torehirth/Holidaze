@@ -71,6 +71,7 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
               className="bg-background no-spinner pointer-events-none w-full max-w-20 rounded-xl border border-gray-400 px-3 py-2 text-right"
             />
             <div className="flex items-center gap-2">
+              <div></div>
               <button type="button" onClick={() => changeGuests(1)}>
                 <Plus className="rounded-xl border hover:scale-95 active:opacity-70" />
               </button>
@@ -80,6 +81,11 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
             </div>
           </div>
         </div>
+        {venue.maxGuests === guests && (
+          <p className="text-destructive -mt-2 flex items-center text-sm">
+            Maximum number of guests reached
+          </p>
+        )}
         <div className="w-full">
           <Button variant="primary" type="submit">
             Book now

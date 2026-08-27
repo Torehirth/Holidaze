@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { VenueCard } from "../../../shared/components/ui/VenueCard";
 import type { APIMetaTypes, Venue } from "../../../shared/types/venue";
 import { getVenues } from "../services/getVenues";
-import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
+import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useSearchParams } from "react-router";

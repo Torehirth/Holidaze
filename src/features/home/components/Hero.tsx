@@ -1,5 +1,5 @@
 import heroImage from "../../../shared/assets/images/ethan-robertson-SYx3UCHZJlo-unsplash.webp";
-import { VenuesSearchForm } from "../../../shared/components/search/VenuesSearchForm";
+import { VenuesSearchForm } from "../../../shared/components/forms/search/VenuesSearchForm";
 
 export const Hero = () => {
   return (

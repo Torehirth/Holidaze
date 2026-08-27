@@ -2,20 +2,23 @@ export type Venue = {
   id: string;
   name: string;
   description: string;
-  media: [
-    {
-      url: string;
-      alt: string;
-    },
-  ];
-  url: string;
+  media: {
+    url: string;
+    alt: string;
+  }[];
   location: {
-    city: string;
-    country: string;
+    city: string | null;
+    country: string | null;
   };
   maxGuests: number;
   rating: number;
   price: number;
+  meta: {
+    wifi: boolean;
+    parking: boolean;
+    breakfast: boolean;
+    pets: boolean;
+  };
 };
 
 export type APIMetaTypes = {
@@ -31,4 +34,54 @@ export type APIMetaTypes = {
 export type VenuesResponse = {
   data: Venue[];
   meta: APIMetaTypes;
+};
+
+export type SingleVenueResponse = {
+  data: Venue & VenueDetails;
+  meta: object;
+};
+
+export type VenueDetails = {
+  bookings: VenueBookings[];
+  owner: VenueOwner;
+};
+
+type VenueOwner = {
+  avatar: {
+    url: string;
+    alt: string;
+  };
+  banner: {
+    url: string;
+    alt: string;
+  };
+  bio: string;
+  email: string;
+  name: string;
+};
+
+type VenueBookings = {
+  created: string;
+  customer: {
+    name: string;
+    email: string;
+    bio: string;
+    avatar: {
+      url: string;
+      alt: string;
+    };
+    banner: {
+      url: string;
+      alt: string;
+    };
+  };
+  dateFrom: string;
+  dateTo: string;
+  guests: number;
+  id: string;
+  updated: string;
+};
+
+export type VenueSectionProps = {
+  venue: Venue & VenueDetails;
 };

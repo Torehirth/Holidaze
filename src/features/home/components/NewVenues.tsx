@@ -5,7 +5,7 @@ import { getVenues } from "../../venues/services/getVenues";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
 
-export const FeaturedStays = () => {
+export const NewVenues = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,11 +35,15 @@ export const FeaturedStays = () => {
       <div className="mx-auto max-w-6xl">
         <div className="mb-4">
           <h2 className="text-xl font-medium">New Stays</h2>
-          <p>Discover unique places for your next getaway</p>
+          <p>Discover new places for your next getaway</p>
         </div>
 
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:overflow-visible">
-          {loading && <Loader />}
+          {loading && (
+            <div className="flex w-full justify-center">
+              <Loader />
+            </div>
+          )}
           {error && (
             <FeedbackMessage
               variant="error"

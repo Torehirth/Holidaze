@@ -18,5 +18,6 @@ export const getVenues = async (page = 1, query = ""): Promise<VenuesResponse> =
     throw new Error(message);
   }
   const venues = await response.json();
+
   return venues;
 };

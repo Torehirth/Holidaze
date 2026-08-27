@@ -6,8 +6,8 @@ type VenueProps = {
   id: string;
   name: string;
   description: string;
-  imageURL?: string;
-  imageAlt?: string;
+  imageURL?: string | undefined;
+  imageAlt?: string | undefined;
   city?: string | null;
   country?: string | null;
   rating: number;

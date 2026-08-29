@@ -5,7 +5,7 @@ import {
   faInstagram,
   faSquareLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import logo from "../assets/logo/logo_small.svg";
 
 export const Footer = () => {
@@ -15,9 +15,11 @@ export const Footer = () => {
     "rounded-sm p-1 hover:opacity-70 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
   return (
-    <footer className="bg-secondary w-full px-4 pt-12 md:p-8">
+    <footer className="bg-secondary w-full px-4 pt-8 md:pt-4">
       <div className="flex flex-col items-start pb-8 md:flex-row md:items-center md:justify-between">
-        <img src={logo} alt="Holidaze logo" className="max-h-8" />
+        <Link to="/">
+          <img src={logo} alt="Holidaze logo" className="max-h-8" />
+        </Link>
         <nav
           aria-label="Footer navigation"
           className="flex flex-col gap-2 pt-8 md:flex-row md:gap-8">
@@ -25,14 +27,16 @@ export const Footer = () => {
             to="/"
             className={({ isActive }) =>
               `${isActive ? activeClass : ""} focus-visible:outline-primary rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4`
-            }>
+            }
+            end>
             Home
           </NavLink>
           <NavLink
             to="/venues"
             className={({ isActive }) =>
               `${isActive ? activeClass : ""} focus-visible:outline-primary rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4`
-            }>
+            }
+            end>
             Explore venues
           </NavLink>
         </nav>

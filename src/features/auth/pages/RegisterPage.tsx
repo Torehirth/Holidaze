@@ -67,7 +67,9 @@ export const RegisterPage = () => {
           <h1 className="text-2xl font-medium">Create your account </h1>
           <p className="mt-2">Register to book stays or manage your own venues.</p>
         </div>
-        {error && <FeedbackMessage variant="error" message={error} />}
+        <div className="mb-4 pb-2">
+          {error && <FeedbackMessage variant="error" message={error} />}
+        </div>
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>

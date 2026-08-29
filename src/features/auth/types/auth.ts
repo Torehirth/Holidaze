@@ -1,4 +1,4 @@
-export type RegisterResponse = {
+export type UserProfile = {
   name: string;
   email: string;
   bio?: string;
@@ -18,4 +18,19 @@ export type RegistrationData = {
   email: string;
   password: string;
   venueManager: boolean;
+};
+
+export type RegisterResponse = {
+  data: UserProfile;
+  meta: object;
+};
+
+export type LoginData = {
+  email: string;
+  password: string;
+};
+
+export type LoginResponse = {
+  data: UserProfile & { accessToken: string };
+  meta: object;
 };

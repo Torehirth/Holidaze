@@ -14,7 +14,7 @@ export const Hero = () => {
           Find Your Perfect Escape
         </h1>
       </article>
-      <div className="-translate-y-20 lg:static lg:-mt-16 lg:translate-y-0">
+      <div className="-translate-y-10 px-4 sm:-translate-y-20 lg:static lg:-translate-y-15 lg:px-12">
         <VenuesSearchForm />
       </div>
     </section>

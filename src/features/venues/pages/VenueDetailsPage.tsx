@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router";
 import { getVenue } from "../services/getVenue";
 import { useEffect, useState } from "react";
-import type { Venue, VenueDetails } from "../../../shared/types/venue";
+import type { Venue, VenueDetails } from "../types/venue";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { ArrowLeft, Users } from "lucide-react";
 import { BookingSection } from "../components/venueDetailsPage/BookingSection";

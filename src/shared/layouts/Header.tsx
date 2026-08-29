@@ -30,21 +30,25 @@ export const Header = () => {
           aria-label="Primary navigation"
           className="hidden items-center gap-12 md:flex">
           <NavLink
+            end
             to="/"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Home
           </NavLink>
           <NavLink
+            end
             to="/venues"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Venues
           </NavLink>
           <NavLink
+            end
             to="/profile"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Dashboard
           </NavLink>
           <NavLink
+            end
             to="/host"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Host
@@ -53,8 +57,9 @@ export const Header = () => {
 
         <div className="flex items-center gap-4">
           <NavLink
-            to="/profile"
-            aria-label="Go to profile"
+            end
+            to="/login"
+            aria-label="Go to login"
             className="inline-flex items-center justify-center hover:opacity-70 active:scale-90">
             <User aria-hidden="true" className="text-foreground" />
           </NavLink>
@@ -80,6 +85,7 @@ export const Header = () => {
         aria-hidden={!isMenuOpen}
         className={`bg-foreground text-background fixed top-20 right-0 bottom-0 z-500 flex w-full max-w-sm flex-col items-center gap-4 px-8 pt-16 pb-8 text-center transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-[200%]"} `}>
         <NavLink
+          end
           to="/"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -88,6 +94,7 @@ export const Header = () => {
           Home
         </NavLink>
         <NavLink
+          end
           to="/venues"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -96,6 +103,7 @@ export const Header = () => {
           Venues
         </NavLink>
         <NavLink
+          end
           to="/dashboard"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -104,6 +112,7 @@ export const Header = () => {
           Dashboard
         </NavLink>
         <NavLink
+          end
           to="/host"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -112,6 +121,7 @@ export const Header = () => {
           Host
         </NavLink>
         <NavLink
+          end
           to="/login"
           onClick={closeMenu}
           className={({ isActive }) =>

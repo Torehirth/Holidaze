@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { VenueCard } from "../../../shared/components/ui/VenueCard";
-import type { APIMetaTypes, Venue } from "../../../shared/types/venue";
+import type { APIMetaTypes, Venue } from "../types/venue";
 import { getVenues } from "../services/getVenues";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";

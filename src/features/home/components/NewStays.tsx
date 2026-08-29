@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { VenueCard } from "../../../shared/components/ui/VenueCard";
-import type { Venue } from "../../../shared/types/venue";
+import type { Venue } from "../../venues/types/venue";
 import { getVenues } from "../../venues/services/getVenues";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 
-export const NewVenues = () => {
+export const NewStays = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +31,7 @@ export const NewVenues = () => {
     loadVenues();
   }, []);
   return (
-    <section className="-my-8 px-12 lg:my-12">
+    <section className="xs:-my-6 -my-8 px-4 sm:-mt-16 lg:mt-0 lg:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mb-4">
           <h2 className="text-xl font-medium">New Stays</h2>

@@ -1,5 +1,5 @@
 import { Car, Check, Coffee, PawPrint, Wifi } from "lucide-react";
-import type { VenueSectionProps } from "../../../../shared/types/venue";
+import type { VenueSectionProps } from "../../types/venue";
 
 export const Facilities = ({ venue }: VenueSectionProps) => {
   return (

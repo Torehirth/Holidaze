@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { VenueSectionProps } from "../../../../shared/types/venue";
+import type { VenueSectionProps } from "../../types/venue";
 import { Button } from "../../../../shared/components/ui/buttons/Button";
 import { Minus, Plus } from "lucide-react";
 

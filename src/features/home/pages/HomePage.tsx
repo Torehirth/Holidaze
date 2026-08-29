@@ -1,5 +1,5 @@
 import { CTASection } from "../components/CTASection";
-import { NewVenues } from "../components/NewVenues";
+import { NewStays } from "../components/NewStays";
 import { PopularDestinations } from "../components/PopularDestinations";
 import { WhyChooseHolidaze } from "../components/WhyChooseHolidaze";
 import { Hero } from "./../components/Hero";
@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <>
       <Hero />
-      <NewVenues />
+      <NewStays />
       <PopularDestinations />
       <WhyChooseHolidaze />
       <CTASection />

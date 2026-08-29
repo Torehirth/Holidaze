@@ -1,4 +1,4 @@
-import type { VenueSectionProps } from "../../../../shared/types/venue";
+import type { VenueSectionProps } from "../../types/venue";
 import placeholderImage from "../../../../shared/assets/images/placeholder.webp";
 
 export const ImageSection = ({ venue }: VenueSectionProps) => {

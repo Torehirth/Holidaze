@@ -70,13 +70,11 @@ export const RegisterPage = () => {
         <div className="mb-4 pb-2">
           {error && <FeedbackMessage variant="error" message={error} />}
         </div>
-
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username" className="font-medium">
               Username
             </label>
-
             <input
               id="username"
               name="username"
@@ -87,12 +85,10 @@ export const RegisterPage = () => {
               className={inputStyles}
             />
           </div>
-
           <div>
             <label htmlFor="email" className="font-medium">
               Student email
             </label>
-
             <input
               id="email"
               name="email"
@@ -105,17 +101,14 @@ export const RegisterPage = () => {
               className={inputStyles}
               aria-describedby="email-help"
             />
-
             <p id="email-help" className="mt-2 text-sm">
               Registration requires a stud.noroff.no email address.
             </p>
           </div>
-
           <div>
             <label htmlFor="password" className="font-medium">
               Password
             </label>
-
             <input
               id="password"
               name="password"
@@ -128,12 +121,10 @@ export const RegisterPage = () => {
               onChange={clearPasswordError}
             />
           </div>
-
           <div>
             <label htmlFor="confirmPassword" className="font-medium">
               Confirm password
             </label>
-
             <input
               id="confirmPassword"
               name="confirmPassword"
@@ -154,23 +145,19 @@ export const RegisterPage = () => {
               type="checkbox"
               className="accent-foreground mt-1 h-4 w-4 cursor-pointer"
             />
-
             <div>
               <label htmlFor="venueManager" className="cursor-pointer font-medium">
                 Register as a venue manager
               </label>
-
               <p className="mt-1 text-sm">
                 Venue managers can create venues and manage their bookings.
               </p>
             </div>
           </div>
-
           <Button variant="primary" type="submit" disabled={loading}>
             {loading ? "Creating account..." : "Create account"}
           </Button>
         </form>
-
         <p className="mt-6 text-center">
           Already have an account?
           <Link

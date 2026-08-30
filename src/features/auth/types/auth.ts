@@ -34,3 +34,11 @@ export type LoginResponse = {
   data: UserProfile & { accessToken: string };
   meta: object;
 };
+
+export type AuthUser = {
+  userName: string;
+  accessToken: string;
+  email: string;
+  venueManager: boolean;
+  profileImageURL: string | undefined;
+};

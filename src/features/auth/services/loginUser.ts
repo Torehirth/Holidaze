@@ -1,7 +1,7 @@
 import { API_LOGIN_ENDPOINT } from "../constants/API";
 import type { LoginResponse, LoginData } from "../types/auth";
 
-export const loginUser = async (userLoginData: LoginData): Promise<void> => {
+export const loginUser = async (userLoginData: LoginData): Promise<LoginResponse> => {
   const options = {
     method: "POST",
     headers: {
@@ -20,10 +20,7 @@ export const loginUser = async (userLoginData: LoginData): Promise<void> => {
   }
 
   const result: LoginResponse = await response.json();
-  localStorage.setItem("accessToken", String(result.data.accessToken));
-  localStorage.setItem("userName", String(result.data.name));
-  localStorage.setItem("email", String(result.data.email));
-  localStorage.setItem("venueManager", String(result.data.venueManager));
 
   console.log("Logged in user: ", result);
+  return result;
 };

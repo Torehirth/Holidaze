@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useState, type SubmitEvent } from "react";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
-import { loginUser } from "../services/loginUser";
+import { loginUser } from "./../services/loginUser";
+import { useAuth } from "../hooks/useAuth";
 
 const inputStyles =
   "mt-2 w-full rounded-xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900 focus:ring-2 focus:ring-stone-900/10";
@@ -10,8 +11,8 @@ const inputStyles =
 export const LoginPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,11 +31,17 @@ export const LoginPage = () => {
       setError(null);
       setLoading(true);
 
-      await loginUser(loginData);
-      setSuccess(true);
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      const result = await loginUser(loginData);
+
+      login({
+        userName: result.data.name,
+        email: result.data.email,
+        accessToken: result.data.accessToken,
+        venueManager: result.data.venueManager,
+        profileImageURL: result.data.avatar?.url,
+      });
+
+      navigate("/", { replace: true });
     } catch (caughtError) {
       if (caughtError instanceof Error) {
         setError(caughtError.message);
@@ -54,18 +61,13 @@ export const LoginPage = () => {
           <p className="mt-2">Log in to manage your bookings and venues.</p>
         </div>
         <div className="mb-4 pb-2">
-          {success && (
-            <FeedbackMessage variant="success" title="Login Successful! 🎉" message="" />
-          )}
           {error && <FeedbackMessage variant="error" message={error} />}
         </div>
-
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="font-medium">
               Email address
             </label>
-
             <input
               id="email"
               name="email"
@@ -78,12 +80,10 @@ export const LoginPage = () => {
               className={inputStyles}
             />
           </div>
-
           <div>
             <label htmlFor="password" className="font-medium">
               Password
             </label>
-
             <input
               id="password"
               name="password"
@@ -95,12 +95,10 @@ export const LoginPage = () => {
               className={inputStyles}
             />
           </div>
-
           <Button variant="primary" type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Log in"}
           </Button>
         </form>
-
         <p className="mt-6 text-center">
           Don't have an account?
           <Link

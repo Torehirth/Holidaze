@@ -40,5 +40,5 @@ export type AuthUser = {
   accessToken: string;
   email: string;
   venueManager: boolean;
-  profileImageURL: string | undefined;
+  profileImageURL: string | undefined | null;
 };

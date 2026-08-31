@@ -3,6 +3,7 @@ import { NavLink } from "react-router";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo/logo_small.svg";
 import { useAuth } from "./../../features/auth/hooks/useAuth";
+import profilePlaceHolderImage from "../assets/images/placeholder_profile.webp";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,7 +65,7 @@ export const Header = () => {
               className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
               <img
                 className="h-8 w-8 rounded-full object-cover"
-                src={currentUser.profileImageURL}
+                src={currentUser.profileImageURL ?? profilePlaceHolderImage}
                 alt={`${currentUser.userName}'s profile image`}
               />
             </NavLink>

@@ -20,7 +20,5 @@ export const loginUser = async (userLoginData: LoginData): Promise<LoginResponse
   }
 
   const result: LoginResponse = await response.json();
-
-  console.log("Logged in user: ", result);
   return result;
 };

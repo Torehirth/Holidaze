@@ -13,7 +13,5 @@ export const getVenue = async (id: string): Promise<SingleVenueResponse> => {
   }
 
   const venue = await response.json();
-  console.log(venue);
-
   return venue;
 };

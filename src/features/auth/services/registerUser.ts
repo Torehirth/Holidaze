@@ -1,5 +1,5 @@
 import { API_REGISTER_ENDPOINT } from "../constants/API";
-import type { RegisterResponse, RegistrationData } from "../types/auth";
+import type { RegistrationData } from "../types/auth";
 
 export const registerUser = async (userRegData: RegistrationData): Promise<void> => {
   const options = {
@@ -20,7 +20,6 @@ export const registerUser = async (userRegData: RegistrationData): Promise<void>
     throw new Error(message);
   }
 
-  const result: RegisterResponse = await response.json();
-
-  console.log("registerUser: ", result);
+  const result = await response.json();
+  return result;
 };

@@ -2,9 +2,12 @@ import { useState } from "react";
 import type { VenueSectionProps } from "../../types/venue";
 import { Button } from "../../../../shared/components/ui/buttons/Button";
 import { Minus, Plus } from "lucide-react";
+import { useAuth } from "../../../auth/hooks/useAuth";
+import { NavLink } from "react-router";
 
 export const BookingSection = ({ venue }: VenueSectionProps) => {
   const [guests, setGuests] = useState(1);
+  const { currentUser } = useAuth();
 
   const changeGuests = (change: number) => {
     if (!venue) {
@@ -87,14 +90,24 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
           </p>
         )}
         <div className="w-full">
-          <Button variant="primary" type="submit">
-            Book now
-          </Button>
+          {!currentUser ? (
+            <NavLink to="/login">
+              <Button variant="primary" type="submit">
+                Log in
+              </Button>
+            </NavLink>
+          ) : (
+            <Button variant="primary" type="submit">
+              Book now
+            </Button>
+          )}
         </div>
       </form>
-      <p className="text-destructive mt-4 text-center text-sm">
-        Sign in to complete your booking.
-      </p>
+      {!currentUser && (
+        <p className="text-destructive mt-4 text-center text-sm">
+          Log in to complete your booking.
+        </p>
+      )}
     </aside>
   );
 };

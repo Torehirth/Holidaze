@@ -79,7 +79,14 @@ export const VenueDetailsPage = () => {
                   </p>
                 </div>
                 <AboutSection venue={venue} />
-                <Facilities venue={venue} />
+                {!venue.meta.breakfast &&
+                !venue.meta.parking &&
+                !venue.meta.pets &&
+                !venue.meta.wifi ? (
+                  ""
+                ) : (
+                  <Facilities venue={venue} />
+                )}
                 <HostSection venue={venue} />
               </article>
               <BookingSection venue={venue} />

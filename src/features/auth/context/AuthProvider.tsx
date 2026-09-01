@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { AuthContext } from "./AuthContext";
-import { getStoredUser } from "../utils/getStoredUser";
+import { getStoredUser } from "../utils/authStorage";
 import type { AuthUser } from "../types/auth";
 
 type AuthProviderProps = {
@@ -20,5 +20,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser);
 
-  return <AuthContext value={{ currentUser, login }}>{children}</AuthContext>;
+  return (
+    <AuthContext value={{ currentUser, login, setCurrentUser }}>{children}</AuthContext>
+  );
 };

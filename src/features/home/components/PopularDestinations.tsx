@@ -15,7 +15,7 @@ export const PopularDestinations = () => {
             className="text-foreground text-xl font-medium">
             Popular Destinations
           </h2>
-          <p className="text-muted-foreground">Explore stays in popular destinations</p>
+          <p>Explore stays in popular destinations</p>
         </div>
 
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:overflow-visible">

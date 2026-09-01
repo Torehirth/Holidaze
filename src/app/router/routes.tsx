@@ -1,10 +1,15 @@
+import { ProtectedRoute } from "../../features/auth/components/ProtectedRoute";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { RegisterPage } from "../../features/auth/pages/RegisterPage";
-import { BookingsDashboardPage } from "../../features/bookings/pages/BookingsDashboardPage";
+import { MyBookingsPage } from "../../features/profile/pages/MyBookingsPage";
 import { HomePage } from "../../features/home/pages/HomePage";
 import { NotFoundPage } from "../../features/not-found/pages/NotFoundPage";
+import { EditProfilePage } from "../../features/profile/pages/EditProfilePage";
 import { ProfilePage } from "../../features/profile/pages/ProfilePage";
-import { VenueManagerDashboardPage } from "../../features/venue-manager/pages/VenueManagerDashboardPage";
+import { CreateVenuePage } from "../../features/venue-manager/pages/CreateVenuePage";
+import { EditVenuePage } from "../../features/venue-manager/pages/EditVenuePage";
+import { VenueManagerPage } from "../../features/venue-manager/pages/VenueManagerPage";
+import { ViewVenueBookingsPage } from "../../features/venue-manager/pages/ViewVenueBookingsPage";
 import { VenueDetailsPage } from "../../features/venues/pages/VenueDetailsPage";
 import { VenuesPage } from "../../features/venues/pages/VenuesPage";
 import { RootLayout } from "../../shared/layouts/RootLayout";
@@ -28,10 +33,6 @@ export const routes: RouteObject[] = [
         element: <LoginPage />,
       },
       {
-        path: "profile",
-        element: <ProfilePage />,
-      },
-      {
         path: "venues",
         element: <VenuesPage />,
       },
@@ -44,12 +45,42 @@ export const routes: RouteObject[] = [
         element: <NotFoundPage />,
       },
       {
-        path: "host",
-        element: <VenueManagerDashboardPage />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfilePage />,
+          },
+          {
+            path: "profile/edit",
+            element: <EditProfilePage />,
+          },
+          {
+            path: "profile/bookings",
+            element: <MyBookingsPage />,
+          },
+        ],
       },
       {
-        path: "dashboard",
-        element: <BookingsDashboardPage />,
+        element: <ProtectedRoute forVenueManagers />,
+        children: [
+          {
+            path: "host",
+            element: <VenueManagerPage />,
+          },
+          {
+            path: "host/venues/:id/create",
+            element: <CreateVenuePage />,
+          },
+          {
+            path: "host/venues/:id/edit",
+            element: <EditVenuePage />,
+          },
+          {
+            path: "host/venues/:id/bookings",
+            element: <ViewVenueBookingsPage />,
+          },
+        ],
       },
     ],
   },

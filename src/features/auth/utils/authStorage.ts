@@ -18,3 +18,11 @@ export const getStoredUser = (): AuthUser | null => {
     profileImageURL,
   };
 };
+
+export const clearStoredUser = (): void => {
+  localStorage.removeItem("userName");
+  localStorage.removeItem("email");
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("venueManager");
+  localStorage.removeItem("profileImageURL");
+};

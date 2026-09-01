@@ -1,5 +1,4 @@
-import { useState } from "react";
-import type { VenueSectionProps } from "../../types/venue";
+import { useState, type SubmitEvent } from "react";
 import { Button } from "../../../../shared/components/ui/buttons/Button";
 import { Minus, Plus } from "lucide-react";
 import { useAuth } from "../../../auth/hooks/useAuth";
@@ -7,13 +6,59 @@ import { NavLink } from "react-router";
 import { BookingCalendar } from "./BookingCalendar";
 import type { DateRange } from "@daypicker/react";
 import { formatDate } from "../../../../shared/utils/formatDate";
+import { bookVenue } from "../../services/bookVenue";
+import { FeedbackMessage } from "../../../../shared/components/ui/feedback/FeedbackMessage";
+import type { BookingSectionProps } from "../../types/venue";
 
-export const BookingSection = ({ venue }: VenueSectionProps) => {
+export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps) => {
   const [guests, setGuests] = useState(1);
   const [selectedRange, setSelectedRange] = useState<DateRange>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
   const { currentUser } = useAuth();
 
-  console.log(venue.bookings);
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!currentUser) {
+      setError("You must be logged in to create a booking.");
+      return;
+    }
+
+    if (!selectedRange?.from || !selectedRange?.to) {
+      setError("Please select both a check-in and a check-out date.");
+      return;
+    }
+
+    const bookingData = {
+      accessToken: currentUser.accessToken,
+      dateFrom: selectedRange.from.toISOString(),
+      dateTo: selectedRange.to.toISOString(),
+      guests: guests,
+      venueId: venue.id,
+    };
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(null);
+
+      await bookVenue(bookingData);
+      await onBookingCreated();
+      setGuests(1);
+      setSelectedRange(undefined);
+      setSuccess("Successfully booked your stay!🎉");
+    } catch (caughtError) {
+      if (caughtError instanceof Error) {
+        setError(caughtError.message);
+      } else {
+        setError("Failed to book venue. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const bookedDateRanges =
     venue.bookings?.map((booking) => ({
@@ -26,10 +71,6 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
   const checkOutDate = selectedRange?.to ? formatDate(selectedRange.to) : "Select a date";
 
   const changeGuests = (change: number) => {
-    if (!venue) {
-      return;
-    }
-
     setGuests((currentGuests) => {
       const newGuests = currentGuests + change;
       if (newGuests < 1) {
@@ -49,7 +90,9 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
         </span>
         <span aria-hidden="true">/ night</span>
       </div>
-      <form aria-label="Book this venue" className="space-y-4">
+      <form aria-label="Book this venue" className="space-y-4" onSubmit={handleSubmit}>
+        {success && <FeedbackMessage variant="success" message={success} />}
+        {error && <FeedbackMessage variant="error" message={error} />}
         <div>
           <BookingCalendar
             selectedRange={selectedRange}
@@ -83,11 +126,10 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
               className="bg-background no-spinner pointer-events-none w-full max-w-20 rounded-xl border border-gray-400 px-3 py-2 text-right font-medium"
             />
             <div className="flex items-center gap-2">
-              <div></div>
-              <button type="button" onClick={() => changeGuests(1)}>
+              <button type="button" onClick={() => changeGuests(1)} aria-label="Add guest">
                 <Plus className="rounded-xl border hover:scale-95 active:opacity-70" />
               </button>
-              <button type="button" onClick={() => changeGuests(-1)}>
+              <button type="button" onClick={() => changeGuests(-1)} aria-label="Remove guest">
                 <Minus className="rounded-xl border hover:scale-95 active:opacity-70" />
               </button>
             </div>
@@ -100,14 +142,14 @@ export const BookingSection = ({ venue }: VenueSectionProps) => {
         )}
         <div className="w-full">
           {!currentUser ? (
-            <NavLink to="/login">
-              <Button variant="primary" type="submit">
-                Log in
-              </Button>
+            <NavLink
+              to="/login"
+              className="border-primary text-primary hover:text-foreground flex w-full items-center justify-center rounded-xl border px-6 py-3 font-medium transition-colors hover:opacity-70 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50">
+              Log in
             </NavLink>
           ) : (
-            <Button variant="primary" type="submit">
-              Book now
+            <Button variant="primary" type="submit" disabled={loading}>
+              {loading ? "Booking..." : "Book now"}
             </Button>
           )}
         </div>

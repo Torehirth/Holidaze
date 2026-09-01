@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router";
 import { getVenue } from "../services/getVenue";
 import { useEffect, useState } from "react";
-import type { Venue, VenueDetails } from "../../../shared/types/venue";
+import type { Venue, VenueDetails } from "../types/venue";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { ArrowLeft, Users } from "lucide-react";
-import { FeedbackMessage } from "../../../shared/components/ui/FeedbackMessage";
 import { BookingSection } from "../components/venueDetailsPage/BookingSection";
 import { Facilities } from "../components/venueDetailsPage/Facilities";
 import { HeadlineSection } from "../components/venueDetailsPage/HeadlineSection";
 import { AboutSection } from "../components/venueDetailsPage/AboutSection";
 import { HostSection } from "../components/venueDetailsPage/HostSection";
 import { ImageSection } from "../components/venueDetailsPage/ImageSection";
+import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 
 export const VenueDetailsPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -49,9 +49,13 @@ export const VenueDetailsPage = () => {
     <>
       <title>{`${venue?.name ?? "Venue details"} | Holidaze`}</title>
       <div>{loading && <Loader />}</div>
-      <div>
+      <div className="mx-auto mt-12 max-w-full px-8">
         {!loading && !venue && error && (
-          <FeedbackMessage variant="error" message="Couldn't find the venue." />
+          <FeedbackMessage
+            variant="error"
+            title="Venue not found!"
+            message="Please try again, or come back later."
+          />
         )}
       </div>
       {!loading && !error && venue && (
@@ -75,7 +79,14 @@ export const VenueDetailsPage = () => {
                   </p>
                 </div>
                 <AboutSection venue={venue} />
-                <Facilities venue={venue} />
+                {!venue.meta.breakfast &&
+                !venue.meta.parking &&
+                !venue.meta.pets &&
+                !venue.meta.wifi ? (
+                  ""
+                ) : (
+                  <Facilities venue={venue} />
+                )}
                 <HostSection venue={venue} />
               </article>
               <BookingSection venue={venue} />

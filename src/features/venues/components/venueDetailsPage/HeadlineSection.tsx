@@ -1,5 +1,5 @@
 import { MapPin, Star } from "lucide-react";
-import type { VenueSectionProps } from "../../../../shared/types/venue";
+import type { VenueSectionProps } from "../../types/venue";
 
 export const HeadlineSection = ({ venue }: VenueSectionProps) => {
   return (

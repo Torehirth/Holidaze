@@ -1,5 +1,5 @@
-import { API_VENUES_END_POINT } from "../../../shared/constants/API";
-import type { VenuesResponse } from "../../../shared/types/venue";
+import { API_VENUES_END_POINT } from "../constants/API";
+import type { VenuesResponse } from "../types/venue";
 
 const VENUES_PER_PAGE = 12;
 

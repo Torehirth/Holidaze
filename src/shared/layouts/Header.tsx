@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
-import { Menu, User, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "../assets/logo/logo_small.svg";
+import { useAuth } from "./../../features/auth/hooks/useAuth";
+import profilePlaceHolderImage from "../assets/images/placeholder_profile.webp";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
-  const initialClass = `px-2 hover:opacity-70 active:scale-90`;
+  const initialClass = `px-2 hover:opacity-70 active:scale-90 font-medium`;
   const activeClass = `border-primary border-b ${initialClass}`;
   const initialClassMobile = `px-2 hover:opacity-70 active:scale-90`;
   const activeClassMobile = `border-background border-b ${initialClassMobile}`;
@@ -24,41 +27,56 @@ export const Header = () => {
           aria-label="Go to Holidaze homepage">
           <img src={logo} alt="Holidaze logo" />
         </NavLink>
-
         {/* Desktop navigation */}
         <nav
           aria-label="Primary navigation"
           className="hidden items-center gap-12 md:flex">
           <NavLink
+            end
             to="/"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Home
           </NavLink>
           <NavLink
+            end
             to="/venues"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Venues
           </NavLink>
           <NavLink
+            end
             to="/profile"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Dashboard
           </NavLink>
           <NavLink
+            end
             to="/host"
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Host
           </NavLink>
         </nav>
-
         <div className="flex items-center gap-4">
-          <NavLink
-            to="/profile"
-            aria-label="Go to profile"
-            className="inline-flex items-center justify-center hover:opacity-70 active:scale-90">
-            <User aria-hidden="true" className="text-foreground" />
-          </NavLink>
-
+          {currentUser ? (
+            <NavLink
+              end
+              to="/profile"
+              aria-label="Go to profile"
+              className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
+              <img
+                className="h-8 w-8 rounded-full object-cover"
+                src={currentUser.profileImageURL ?? profilePlaceHolderImage}
+                alt={`${currentUser.userName}'s profile image`}
+              />
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              aria-label="Go to login"
+              className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
+              <span className={initialClass}>Log in</span>
+            </NavLink>
+          )}
           <button
             type="button"
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -72,7 +90,6 @@ export const Header = () => {
           </button>
         </div>
       </div>
-
       {/* Mobile menu */}
       <nav
         id="mobile-navigation"
@@ -80,6 +97,7 @@ export const Header = () => {
         aria-hidden={!isMenuOpen}
         className={`bg-foreground text-background fixed top-20 right-0 bottom-0 z-500 flex w-full max-w-sm flex-col items-center gap-4 px-8 pt-16 pb-8 text-center transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-[200%]"} `}>
         <NavLink
+          end
           to="/"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -88,6 +106,7 @@ export const Header = () => {
           Home
         </NavLink>
         <NavLink
+          end
           to="/venues"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -96,6 +115,7 @@ export const Header = () => {
           Venues
         </NavLink>
         <NavLink
+          end
           to="/dashboard"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -104,6 +124,7 @@ export const Header = () => {
           Dashboard
         </NavLink>
         <NavLink
+          end
           to="/host"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -112,6 +133,7 @@ export const Header = () => {
           Host
         </NavLink>
         <NavLink
+          end
           to="/login"
           onClick={closeMenu}
           className={({ isActive }) =>
@@ -120,7 +142,6 @@ export const Header = () => {
           Login
         </NavLink>
       </nav>
-
       {/* Backdrop to close menu on click outside */}
       {isMenuOpen && (
         <div

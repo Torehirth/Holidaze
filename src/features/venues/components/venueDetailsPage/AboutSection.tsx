@@ -1,4 +1,4 @@
-import type { VenueSectionProps } from "../../../../shared/types/venue";
+import type { VenueSectionProps } from "../../types/venue";
 
 export const AboutSection = ({ venue }: VenueSectionProps) => {
   return (

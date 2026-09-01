@@ -1,5 +1,5 @@
-import type { SingleVenueResponse } from "../../../shared/types/venue";
-import { API_VENUES_END_POINT } from "./../../../shared/constants/API";
+import type { SingleVenueResponse } from "../types/venue";
+import { API_VENUES_END_POINT } from "../constants/API";
 
 export const getVenue = async (id: string): Promise<SingleVenueResponse> => {
   const singleVenueEndpoint = `${API_VENUES_END_POINT}/${id}?_owner=true&_bookings=true`;
@@ -13,7 +13,5 @@ export const getVenue = async (id: string): Promise<SingleVenueResponse> => {
   }
 
   const venue = await response.json();
-  console.log(venue);
-
   return venue;
 };

@@ -6,7 +6,7 @@ import italyImage from "../../../shared/assets/images/anders-jilden-cYrMQA7a3Wc-
 export const PopularDestinations = () => {
   return (
     <section
-      className="bg-muted mt-12 px-12 py-8"
+      className="bg-muted mt-12 px-4 py-8 lg:px-12"
       aria-labelledby="popular-destinations-heading">
       <div className="mx-auto max-w-6xl">
         <div className="mb-6">
@@ -15,7 +15,7 @@ export const PopularDestinations = () => {
             className="text-foreground text-xl font-medium">
             Popular Destinations
           </h2>
-          <p className="text-muted-foreground">Explore stays in popular destinations</p>
+          <p>Explore stays in popular destinations</p>
         </div>
 
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:overflow-visible">

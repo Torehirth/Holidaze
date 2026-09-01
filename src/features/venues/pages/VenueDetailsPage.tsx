@@ -45,6 +45,14 @@ export const VenueDetailsPage = () => {
     loadVenue();
   }, [id]);
 
+  const refreshVenue = async () => {
+    if (!id) {
+      return;
+    }
+    const result = await getVenue(id);
+    setVenue(result.data);
+  };
+
   return (
     <>
       <title>{`${venue?.name ?? "Venue details"} | Holidaze`}</title>
@@ -89,7 +97,7 @@ export const VenueDetailsPage = () => {
                 )}
                 <HostSection venue={venue} />
               </article>
-              <BookingSection venue={venue} />
+              <BookingSection venue={venue} onBookingCreated={refreshVenue} />
             </div>
           </section>
         </div>

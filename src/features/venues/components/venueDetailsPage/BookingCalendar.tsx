@@ -1,5 +1,6 @@
 import { DayPicker, type DateRange } from "@daypicker/react";
 import "@daypicker/react/style.css";
+import styles from "./BookingCalendar.module.css";
 
 type BookingCalendarProps = {
   selectedRange: DateRange | undefined;
@@ -19,6 +20,7 @@ export const BookingCalendar = ({
       disabled={[{ before: new Date() }, ...bookedDateRanges]}
       excludeDisabled
       min={1}
+      className={styles.bookingCalendar!}
     />
   );
 };

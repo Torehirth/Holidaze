@@ -1,0 +1,37 @@
+.bookingCalendar {
+  width: 100%;
+  margin: 0;
+
+  --rdp-accent-color: var(--color-primary);
+  --rdp-disabled-opacity: 0.3;
+  --rdp-selected-border: 2px solid var(--color-primary);
+}
+
+.bookingCalendar :global(.rdp-month),
+.bookingCalendar :global(.rdp-month_grid) {
+  width: 100%;
+}
+
+.bookingCalendar :global(.rdp-month_grid) {
+  table-layout: fixed;
+}
+
+.bookingCalendar :global(.rdp-day) {
+  width: auto;
+  font-weight: 500;
+}
+
+.bookingCalendar :global(.rdp-day_button) {
+  width: 100%;
+  max-width: 42px;
+  margin-inline: auto;
+}
+
+.bookingCalendar :global(.rdp-disabled) {
+  color: var(--color-gray-500);
+}
+
+.bookingCalendar :global(.rdp-day_button:focus-visible) {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

@@ -62,14 +62,13 @@
 }
 
 @layer utilities {
-  /* Hide spinners for Chrome, Safari, Edge, Opera */
+  /* Hide input spinners for Chrome, Safari, Edge, Opera */
   .no-spinner::-webkit-outer-spin-button,
   .no-spinner::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-
-  /* Hide spinners for Firefox */
+  /* Hide input spinners for Firefox */
   .no-spinner {
     -moz-appearance: textfield;
   }

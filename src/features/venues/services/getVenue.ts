@@ -8,8 +8,7 @@ export const getVenue = async (id: string): Promise<SingleVenueResponse> => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    const message = errorData?.errors?.[0]?.message || "Failed to fetch venue.";
-    throw new Error(message);
+    throw new Error(errorData?.errors?.[0]?.message || "Failed to fetch venue.");
   }
 
   const venue = await response.json();

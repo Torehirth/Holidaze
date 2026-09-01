@@ -85,3 +85,8 @@ type VenueBookings = {
 export type VenueSectionProps = {
   venue: Venue & VenueDetails;
 };
+
+export type BookingSectionProps = {
+  venue: Venue & VenueDetails;
+  onBookingCreated: () => Promise<void>;
+};

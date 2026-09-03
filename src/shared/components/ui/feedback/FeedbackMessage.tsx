@@ -19,7 +19,7 @@ const feedbackVariants = {
   },
   success: {
     icon: CircleCheck,
-    containerClasses: "border-green-600/30 bg-green-50",
+    containerClasses: "border-green-600/30 bg-success",
     iconClasses: "text-green-700",
   },
 };

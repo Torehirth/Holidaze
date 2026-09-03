@@ -1,6 +1,6 @@
 import { API_BASE_URL } from "../../auth/constants/API";
 import type { AuthUser } from "../../auth/types/auth";
-import type { BookedVenueResponse } from "../types/profile";
+import type { BookedVenueResponse } from "../types/bookings";
 
 export const getBookedVenues = async (user: AuthUser): Promise<BookedVenueResponse> => {
   if (!user) {

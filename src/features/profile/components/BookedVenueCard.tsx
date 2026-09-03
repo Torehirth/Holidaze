@@ -1,7 +1,7 @@
 import { CalendarDays, MapPin, Users } from "lucide-react";
 import placeholderImage from "../../../shared/assets/images/placeholder.webp";
 import { Link } from "react-router";
-import type { BookedVenueCardProps } from "../types/profile";
+import type { BookedVenueCardProps } from "../types/bookings";
 import { formatDate } from "../../../shared/utils/formatDate";
 
 export const BookedVenueCard = ({

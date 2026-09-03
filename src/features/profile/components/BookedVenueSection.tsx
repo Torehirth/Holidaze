@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getBookedVenues } from "../services/getBookedVenues";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
-import type { BookedVenueResponse } from "../types/profile";
+import type { BookedVenueResponse } from "../types/bookings";
 
 export const BookedVenueSection = () => {
   const { currentUser } = useAuth();
@@ -48,7 +48,12 @@ export const BookedVenueSection = () => {
   const upcomingBookings =
     currentTimeStamp === undefined
       ? []
-      : (bookedVenues?.data.filter((booking) => new Date(booking.dateTo) > currentDate) ?? []);
+      : (bookedVenues?.data
+          .filter((booking) => new Date(booking.dateTo) > currentDate)
+          .sort(
+            (firsBooking, lastBooking) =>
+              Date.parse(firsBooking.dateFrom) - Date.parse(lastBooking.dateFrom)
+          ) ?? []);
 
   return (
     <section aria-labelledby="bookings-heading" className="mt-12 border-t border-gray-300 pt-10">

@@ -1,27 +1,40 @@
+export type Media = {
+  url: string;
+  alt: string;
+};
+
+export type VenueLocation = {
+  address: string | null;
+  city: string | null;
+  zip: string | null;
+  country: string | null;
+  continent: string | null;
+  lat: number;
+  lng: number;
+};
+
+export type VenueMeta = {
+  wifi: boolean;
+  parking: boolean;
+  breakfast: boolean;
+  pets: boolean;
+};
+
 export type Venue = {
   id: string;
   name: string;
   description: string;
-  media: {
-    url: string;
-    alt: string;
-  }[];
-  location: {
-    city: string | null;
-    country: string | null;
-  };
+  media: Media[];
+  location: VenueLocation;
   maxGuests: number;
   rating: number;
   price: number;
-  meta: {
-    wifi: boolean;
-    parking: boolean;
-    breakfast: boolean;
-    pets: boolean;
-  };
+  meta: VenueMeta;
+  created: string;
+  updated: string;
 };
 
-export type APIMetaTypes = {
+export type PaginationMeta = {
   currentPage: number;
   isFirstPage: boolean;
   isLastPage: boolean;
@@ -33,60 +46,50 @@ export type APIMetaTypes = {
 
 export type VenuesResponse = {
   data: Venue[];
-  meta: APIMetaTypes;
+  meta: PaginationMeta;
 };
 
-export type SingleVenueResponse = {
-  data: Venue & VenueDetails;
-  meta: object;
-};
-
-export type VenueDetails = {
-  bookings: VenueBookings[];
-  owner: VenueOwner;
-};
-
-type VenueOwner = {
-  avatar: {
-    url: string;
-    alt: string;
-  };
-  banner: {
-    url: string;
-    alt: string;
-  };
-  bio: string;
-  email: string;
+export type VenueOwner = {
   name: string;
+  email: string;
+  bio: string | null;
+  avatar: Media;
+  banner: Media;
 };
 
-type VenueBookings = {
-  created: string;
-  customer: {
-    name: string;
-    email: string;
-    bio: string;
-    avatar: {
-      url: string;
-      alt: string;
-    };
-    banner: {
-      url: string;
-      alt: string;
-    };
-  };
+export type VenueBooking = {
+  id: string;
   dateFrom: string;
   dateTo: string;
   guests: number;
-  id: string;
+  created: string;
   updated: string;
+  customer: {
+    name: string;
+    email: string;
+    bio: string | null;
+    avatar: Media;
+    banner: Media;
+  };
+};
+
+export type VenueDetails = {
+  bookings: VenueBooking[];
+  owner: VenueOwner;
+};
+
+export type VenueWithDetails = Venue & VenueDetails;
+
+export type SingleVenueResponse = {
+  data: VenueWithDetails;
+  meta: object;
 };
 
 export type VenueSectionProps = {
-  venue: Venue & VenueDetails;
+  venue: VenueWithDetails;
 };
 
 export type BookingSectionProps = {
-  venue: Venue & VenueDetails;
+  venue: VenueWithDetails;
   onBookingCreated: () => Promise<void>;
 };

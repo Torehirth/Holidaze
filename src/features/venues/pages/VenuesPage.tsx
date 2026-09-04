@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { VenueCard } from "../../../shared/components/ui/VenueCard";
-import type { APIMetaTypes, Venue } from "../types/venue";
+import type { PaginationMeta, Venue } from "../types/venue";
 import { getVenues } from "../services/getVenues";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
@@ -12,7 +12,7 @@ export const VenuesPage = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [meta, setMeta] = useState<APIMetaTypes | null>(null);
+  const [meta, setMeta] = useState<PaginationMeta | null>(null);
   const [page, setPage] = useState<number>(1);
   const [searchParam] = useSearchParams();
 
@@ -85,25 +85,12 @@ export const VenuesPage = () => {
           )}
           {loading && !error && venues.length === 0 && <Loader />}
           {error && (
-            <FeedbackMessage
-              variant="error"
-              title="Loading venues failed"
-              message={error}
-            />
+            <FeedbackMessage variant="error" title="Loading venues failed" message={error} />
           )}
           {venues.length > 0 && (
             <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {venues.map(
-                ({
-                  id,
-                  name,
-                  description,
-                  price,
-                  media,
-                  rating,
-                  location,
-                  maxGuests,
-                }) => (
+                ({ id, name, description, price, media, rating, location, maxGuests }) => (
                   <li key={id}>
                     <VenueCard
                       id={id}

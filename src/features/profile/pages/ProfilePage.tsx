@@ -1,65 +1,57 @@
-import { Edit3, LogOut, MapPin, Plus } from "lucide-react";
+import { MapPin, Plus } from "lucide-react";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import placeholderImage from "../../../shared/assets/images/placeholder.webp";
-import profilePlaceholderImage from "../../../shared/assets/images/placeholder_profile.webp";
 import { useAuth } from "./../../auth/hooks/useAuth";
 import { BookedVenueSection } from "../components/BookedVenueSection";
+import { UserSection } from "../components/UserSection";
+import { getProfile } from "../services/getProfile";
+import { useEffect, useState } from "react";
+import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
+import type { User } from "../types/user";
+import { Loader } from "../../../shared/components/ui/Loader";
 
 export const ProfilePage = () => {
   const { currentUser } = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      if (!currentUser) {
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        const result = await getProfile(currentUser);
+        console.log(result);
+        setUser(result.data);
+      } catch (caughtError) {
+        if (caughtError instanceof Error) {
+          setError(caughtError.message);
+        } else {
+          setError("Couldn't retrieve profile right now.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProfile();
+  }, [currentUser]);
 
   return (
     <>
       <title>{`${currentUser?.userName}'s profile | Holidaze`}</title>
-      <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="sr-only">My profile</h1>
 
-        <section
-          aria-labelledby="profile-heading"
-          className="bg-card overflow-hidden rounded-2xl border border-gray-400 shadow-sm">
-          <div className="from-primary/80 to-primary h-40 bg-linear-to-r sm:h-56" />
+        {loading && <Loader />}
+        {error && <FeedbackMessage variant="error" message={error} />}
 
-          <div className="p-5 sm:p-8">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <div className="bg-card w-fit rounded-full border border-gray-300 p-1.5 shadow-sm">
-                <img
-                  src={profilePlaceholderImage}
-                  alt="Profile avatar"
-                  className="h-24 w-24 rounded-full object-cover sm:h-28 sm:w-28"
-                />
-              </div>
-
-              <div>
-                <h2 id="profile-heading" className="text-2xl font-semibold">
-                  Username
-                </h2>
-                <p className="">user@stud.noroff.no</p>
-                <span className="bg-accent mt-2 inline-block rounded-full px-3 py-1 text-sm font-medium">
-                  {currentUser?.venueManager ? "Venue manager" : "Customer"}
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-6 max-w-2xl border-t border-gray-300 pt-5">
-              <h3 className="font-medium">About</h3>
-              <p className="mt-2 leading-relaxed">
-                A short profile bio will appear here. Tell hosts and guests a little about yourself.
-              </p>
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3 border-t border-gray-300 pt-5 sm:flex-row sm:justify-end">
-              <Button type="button" variant="secondary">
-                <Edit3 aria-hidden="true" className="h-4 w-4" />
-                Edit profile
-              </Button>
-              <Button type="button" variant="secondary">
-                <LogOut aria-hidden="true" className="h-4 w-4" />
-                Log out
-              </Button>
-            </div>
-          </div>
-        </section>
-
+        {user && <UserSection user={user} />}
         <BookedVenueSection />
 
         {currentUser?.venueManager && (
@@ -114,7 +106,7 @@ export const ProfilePage = () => {
             </ul>
           </section>
         )}
-      </main>
+      </div>
     </>
   );
 };

@@ -41,13 +41,13 @@ export const BookedVenueCard = ({
 
               {isGoingOn ? (
                 <p
-                  className="bg-accent w-fit rounded-2xl px-2 py-1 text-sm"
+                  className="bg-accent w-fit rounded-2xl px-2 py-1 text-sm font-medium"
                   aria-label="Ongoing stay">
                   Ongoing
                 </p>
               ) : (
                 <p
-                  className="w-fit rounded-2xl bg-green-200 px-2 py-1 text-sm"
+                  className="w-fit rounded-2xl bg-green-200 px-2 py-1 text-sm font-medium"
                   aria-label="Upcoming stay">
                   Upcoming
                 </p>

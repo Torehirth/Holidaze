@@ -20,7 +20,5 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser);
 
-  return (
-    <AuthContext value={{ currentUser, login, setCurrentUser }}>{children}</AuthContext>
-  );
+  return <AuthContext value={{ currentUser, login, setCurrentUser }}>{children}</AuthContext>;
 };

@@ -1,7 +1,6 @@
 import { ProtectedRoute } from "../../features/auth/components/ProtectedRoute";
 import { LoginPage } from "../../features/auth/pages/LoginPage";
 import { RegisterPage } from "../../features/auth/pages/RegisterPage";
-import { MyBookingsPage } from "../../features/profile/pages/MyBookingsPage";
 import { HomePage } from "../../features/home/pages/HomePage";
 import { NotFoundPage } from "../../features/not-found/pages/NotFoundPage";
 import { EditProfilePage } from "../../features/profile/pages/EditProfilePage";
@@ -54,10 +53,6 @@ export const routes: RouteObject[] = [
           {
             path: "profile/edit",
             element: <EditProfilePage />,
-          },
-          {
-            path: "profile/bookings",
-            element: <MyBookingsPage />,
           },
         ],
       },

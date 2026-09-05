@@ -21,7 +21,6 @@ export const UserSection = ({ user }: UserSectionProps) => {
           className="h-full w-full object-cover object-center"
         />
       </div>
-
       <div className="p-5 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
           <div className="bg-card w-fit rounded-full border border-gray-300 p-1.5 shadow-sm">
@@ -31,7 +30,6 @@ export const UserSection = ({ user }: UserSectionProps) => {
               className="h-24 w-24 rounded-full object-cover object-center sm:h-28 sm:w-28"
             />
           </div>
-
           <div>
             <h2 id="profile-heading" className="text-2xl font-semibold">
               {user.name}
@@ -52,12 +50,10 @@ export const UserSection = ({ user }: UserSectionProps) => {
             </div>
           </div>
         </div>
-
         <div className="mt-6 max-w-2xl border-t border-gray-300 pt-5">
           <h3 className="font-medium">About</h3>
           <p className="mt-2 leading-relaxed">{user.bio || "Write a little text about yourself"}</p>
         </div>
-
         <div className="mt-6 flex flex-col gap-3 border-t border-gray-300 pt-5 sm:flex-row sm:justify-end">
           <Link
             to="/profile/edit"

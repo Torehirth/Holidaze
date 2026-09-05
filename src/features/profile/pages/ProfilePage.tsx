@@ -27,7 +27,6 @@ export const ProfilePage = () => {
         setError(null);
 
         const result = await getProfile(currentUser);
-        console.log(result);
         setUser(result.data);
       } catch (caughtError) {
         if (caughtError instanceof Error) {

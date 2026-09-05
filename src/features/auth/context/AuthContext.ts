@@ -5,6 +5,7 @@ type AuthContextValue = {
   currentUser: AuthUser | null;
   login: (user: AuthUser) => void;
   setCurrentUser: (user: AuthUser | null) => void;
+  updateCurrentUser: (updates: Partial<AuthUser>) => void;
 };
 
 export const AuthContext = createContext<AuthContextValue | null>(null);

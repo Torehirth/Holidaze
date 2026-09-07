@@ -8,16 +8,18 @@ import { ProfilePage } from "../../features/profile/pages/ProfilePage";
 import { CreateVenuePage } from "../../features/venue-manager/pages/CreateVenuePage";
 import { EditVenuePage } from "../../features/venue-manager/pages/EditVenuePage";
 import { VenueManagerPage } from "../../features/venue-manager/pages/VenueManagerPage";
-import { ViewVenueBookingsPage } from "../../features/venue-manager/pages/ViewVenueBookingsPage";
+import { VenueBookingsPage } from "../../features/venue-manager/pages/VenueBookingsPage";
 import { VenueDetailsPage } from "../../features/venues/pages/VenueDetailsPage";
 import { VenuesPage } from "../../features/venues/pages/VenuesPage";
 import { RootLayout } from "../../shared/layouts/RootLayout";
 import type { RouteObject } from "react-router";
+import { RouteErrorBoundary } from "../../shared/components/ui/feedback/RouteErrorBoundary";
 
 export const routes: RouteObject[] = [
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
         index: true,
@@ -64,7 +66,7 @@ export const routes: RouteObject[] = [
             element: <VenueManagerPage />,
           },
           {
-            path: "host/venues/:id/create",
+            path: "host/venues/create",
             element: <CreateVenuePage />,
           },
           {
@@ -73,7 +75,7 @@ export const routes: RouteObject[] = [
           },
           {
             path: "host/venues/:id/bookings",
-            element: <ViewVenueBookingsPage />,
+            element: <VenueBookingsPage />,
           },
         ],
       },

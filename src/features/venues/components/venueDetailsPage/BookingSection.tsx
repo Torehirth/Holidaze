@@ -147,6 +147,8 @@ export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps)
               className="border-primary text-primary hover:text-foreground flex w-full items-center justify-center rounded-xl border px-6 py-3 font-medium transition-colors hover:opacity-70 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50">
               Log in
             </NavLink>
+          ) : venue.owner.name === currentUser?.userName ? (
+            <FeedbackMessage variant="error" message="Not able to book your own venue" />
           ) : (
             <Button variant="primary" type="submit" disabled={loading}>
               {loading ? "Booking..." : "Book now"}

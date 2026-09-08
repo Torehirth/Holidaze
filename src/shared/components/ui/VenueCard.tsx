@@ -28,7 +28,7 @@ export const VenueCard = ({
   country,
 }: VenueProps) => {
   return (
-    <article className="bg-card focus-within:ring-foreground h-full overflow-hidden rounded-xl shadow-sm transition-all focus-within:ring-2 focus-within:ring-offset-2 hover:border hover:shadow-md">
+    <article className="bg-card focus-within:ring-foreground h-full overflow-hidden rounded-2xl capitalize shadow-sm transition-all focus-within:ring-2 hover:border hover:shadow-md">
       <Link
         to={`/venues/${id}`}
         aria-label={`View venue details for ${name}`}
@@ -42,10 +42,7 @@ export const VenueCard = ({
           <div className="flex items-start justify-between gap-3">
             <h3 className="text-foreground line-clamp-2 text-base font-medium">{name}</h3>
             <div className="flex shrink-0 items-center gap-1">
-              <Star
-                aria-hidden="true"
-                className="h-4 w-4 fill-yellow-400 text-yellow-400"
-              />
+              <Star aria-hidden="true" className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span className="text-sm" aria-hidden="true">
                 {rating}
               </span>

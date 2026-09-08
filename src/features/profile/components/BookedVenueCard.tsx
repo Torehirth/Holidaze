@@ -23,9 +23,10 @@ export const BookedVenueCard = ({
   const isGoingOn = currentTimeStamp >= startTimeStamp && currentTimeStamp <= endTimeStamp;
 
   return (
+    // focus-within:ring-offset-1 focus-within:ring-muted
     <>
       <Link to={`/venues/${venueId}`}>
-        <article className="bg-card overflow-hidden rounded-2xl border border-gray-400 shadow-sm transition hover:shadow-md sm:flex">
+        <article className="bg-card hover:ring-foreground/50 overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-md hover:ring active:ring-2 sm:flex">
           <div className="aspect-4/3 w-full shrink-0 overflow-hidden sm:w-44">
             <img
               src={imageUrl || placeholderImage}
@@ -35,10 +36,7 @@ export const BookedVenueCard = ({
           </div>
           <div className="flex min-w-0 flex-1 flex-col p-5">
             <div className="flex items-center justify-between">
-              <h3 className="mt-1 line-clamp-2 max-w-4/6 text-lg font-medium text-ellipsis whitespace-nowrap">
-                {venueName}
-              </h3>
-
+              <h3 className="mt-1 line-clamp-2 max-w-4/6 text-lg font-medium">{venueName}</h3>
               {isGoingOn ? (
                 <p
                   className="bg-accent w-fit rounded-2xl px-2 py-1 text-sm font-medium"

@@ -13,7 +13,7 @@ export const UserSection = ({ user }: UserSectionProps) => {
   return (
     <section
       aria-labelledby="profile-heading"
-      className="bg-card overflow-hidden rounded-2xl border border-gray-400 shadow-sm">
+      className="bg-card overflow-hidden rounded-2xl border border-gray-400 capitalize shadow-sm">
       <div className="h-40 overflow-hidden sm:h-56">
         <img
           src={user.banner.url || "https://placehold.net/600x400.png"}
@@ -34,7 +34,7 @@ export const UserSection = ({ user }: UserSectionProps) => {
             <h2 id="profile-heading" className="text-2xl font-semibold">
               {user.name}
             </h2>
-            <p className="">{user?.email}</p>
+            <p className="lowercase">{user?.email}</p>
             <span className="bg-accent mt-2 flex w-fit items-center justify-between gap-2 rounded-full px-3 py-1 text-sm font-medium">
               {user?.venueManager ? "Venue manager" : "Customer"}
             </span>

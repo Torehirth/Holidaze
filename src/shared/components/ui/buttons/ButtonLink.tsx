@@ -23,7 +23,7 @@ type ButtonLinkProps = {
  */
 export const ButtonLink = ({ to, variant, children }: ButtonLinkProps) => {
   const baseClasses =
-    "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 font-medium shadow-md transition-colors transition-transform hover:scale-[1.02] active:opacity-50";
+    "inline-flex items-center capitalize justify-center gap-2 rounded-2xl px-6 py-3 font-medium shadow-md transition-colors transition-transform hover:scale-[1.02] active:opacity-50";
 
   const variants = {
     primary: "bg-primary text-white",

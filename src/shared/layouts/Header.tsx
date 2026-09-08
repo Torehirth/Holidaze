@@ -61,7 +61,7 @@ export const Header = () => {
               aria-label="Go to profile"
               className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
               <img
-                className="h-8 w-8 rounded-full object-cover"
+                className="h-8 w-8 rounded-full object-cover md:h-10 md:w-10"
                 src={currentUser.profileImageURL ?? profilePlaceHolderImage}
                 alt={`${currentUser.userName}'s profile image`}
               />
@@ -109,7 +109,7 @@ export const Header = () => {
         </NavLink>
         <NavLink
           end
-          to="/dashboard"
+          to="/profile"
           onClick={closeMenu}
           className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
           Dashboard
@@ -123,13 +123,15 @@ export const Header = () => {
             Host
           </NavLink>
         )}
-        <NavLink
-          end
-          to="/login"
-          onClick={closeMenu}
-          className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
-          Login
-        </NavLink>
+        {!currentUser && (
+          <NavLink
+            end
+            to="/login"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
+            Login
+          </NavLink>
+        )}
       </nav>
       {/* Backdrop to close menu on click outside */}
       {isMenuOpen && (

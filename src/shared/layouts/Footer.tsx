@@ -15,7 +15,7 @@ export const Footer = () => {
     "rounded-sm p-1 hover:opacity-70 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
   return (
-    <footer className="bg-secondary w-full px-4 pt-8 md:pt-4">
+    <footer className="bg-secondary w-full px-4 pt-8 md:px-8 md:pt-4">
       <div className="flex flex-col items-start pb-8 md:flex-row md:items-center md:justify-between">
         <Link to="/">
           <img src={logo} alt="Holidaze logo" className="max-h-8" />

@@ -9,6 +9,7 @@ import { FeedbackMessage } from "../../../shared/components/ui/feedback/Feedback
 import { Loader } from "./../../../shared/components/ui/Loader";
 import type { AuthUser } from "../../auth/types/auth";
 import type { User } from "../types/user";
+import { useAuth } from "../../auth/hooks/useAuth";
 
 type EditProfileFormProps = {
   currentUser: AuthUser;
@@ -21,6 +22,7 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
   const [avatarUrl, setAvatarUrl] = useState<string>(profile.avatar.url);
   const [bannerUrl, setBannerUrl] = useState<string>(profile.banner.url);
   const navigate = useNavigate();
+  const { updateCurrentUser } = useAuth();
   const inputStyles =
     "mt-2 w-full rounded-xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900 focus:ring-2 focus:ring-stone-900/10";
 
@@ -50,9 +52,12 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
 
       const profileObj = await updateProfile(currentUser, profileData);
 
-      setAvatarUrl(String(profileObj.data.avatar?.url));
-      setBannerUrl(String(profileObj.data.banner?.url));
-      navigate("/profile");
+      updateCurrentUser({
+        venueManager: String(profileObj.data.venueManager) === "true" ? true : false,
+        profileImageURL: profileObj.data.avatar?.url,
+      });
+
+      navigate("/profile", { replace: true });
     } catch (caughtError) {
       if (caughtError instanceof Error) {
         setError(caughtError.message);

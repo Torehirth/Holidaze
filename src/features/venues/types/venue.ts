@@ -1,3 +1,5 @@
+import type { Booking } from "../../profile/types/bookings";
+
 export type Media = {
   url: string;
   alt: string;
@@ -32,6 +34,7 @@ export type Venue = {
   meta: VenueMeta;
   created: string;
   updated: string;
+  bookings: Booking[];
 };
 
 export type PaginationMeta = {

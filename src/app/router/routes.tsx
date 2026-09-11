@@ -13,11 +13,14 @@ import { VenueDetailsPage } from "../../features/venues/pages/VenueDetailsPage";
 import { VenuesPage } from "../../features/venues/pages/VenuesPage";
 import { RootLayout } from "../../shared/layouts/RootLayout";
 import type { RouteObject } from "react-router";
+import { RouteErrorBoundary } from "../../shared/components/ui/feedback/RouteErrorBoundary";
+// import { UserProfilePage } from "../../features/profile/pages/UserProfilePage";
 
 export const routes: RouteObject[] = [
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       {
         index: true,
@@ -39,10 +42,7 @@ export const routes: RouteObject[] = [
         path: "venues/:id",
         element: <VenueDetailsPage />,
       },
-      {
-        path: "*",
-        element: <NotFoundPage />,
-      },
+
       {
         element: <ProtectedRoute />,
         children: [
@@ -54,6 +54,10 @@ export const routes: RouteObject[] = [
             path: "profile/edit",
             element: <EditProfilePage />,
           },
+          {
+            path: "profiles/:name",
+            element: <ProfilePage />,
+          },
         ],
       },
       {
@@ -64,7 +68,7 @@ export const routes: RouteObject[] = [
             element: <VenueManagerPage />,
           },
           {
-            path: "host/venues/:id/create",
+            path: "host/venues/create",
             element: <CreateVenuePage />,
           },
           {
@@ -76,6 +80,10 @@ export const routes: RouteObject[] = [
             element: <ViewVenueBookingsPage />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

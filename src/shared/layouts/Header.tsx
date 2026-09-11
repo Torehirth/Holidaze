@@ -28,13 +28,8 @@ export const Header = () => {
           <img src={logo} alt="Holidaze logo" />
         </NavLink>
         {/* Desktop navigation */}
-        <nav
-          aria-label="Primary navigation"
-          className="hidden items-center gap-12 md:flex">
-          <NavLink
-            end
-            to="/"
-            className={({ isActive }) => (isActive ? activeClass : initialClass)}>
+        <nav aria-label="Primary navigation" className="hidden items-center gap-12 md:flex">
+          <NavLink end to="/" className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Home
           </NavLink>
           <NavLink
@@ -49,12 +44,14 @@ export const Header = () => {
             className={({ isActive }) => (isActive ? activeClass : initialClass)}>
             Dashboard
           </NavLink>
-          <NavLink
-            end
-            to="/host"
-            className={({ isActive }) => (isActive ? activeClass : initialClass)}>
-            Host
-          </NavLink>
+          {currentUser?.venueManager && (
+            <NavLink
+              end
+              to="/host"
+              className={({ isActive }) => (isActive ? activeClass : initialClass)}>
+              Host
+            </NavLink>
+          )}
         </nav>
         <div className="flex items-center gap-4">
           {currentUser ? (
@@ -64,7 +61,7 @@ export const Header = () => {
               aria-label="Go to profile"
               className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
               <img
-                className="h-8 w-8 rounded-full object-cover"
+                className="h-8 w-8 rounded-full object-cover md:h-10 md:w-10"
                 src={currentUser.profileImageURL ?? profilePlaceHolderImage}
                 alt={`${currentUser.userName}'s profile image`}
               />
@@ -100,47 +97,41 @@ export const Header = () => {
           end
           to="/"
           onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive ? activeClassMobile : initialClassMobile
-          }>
+          className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
           Home
         </NavLink>
         <NavLink
           end
           to="/venues"
           onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive ? activeClassMobile : initialClassMobile
-          }>
+          className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
           Venues
         </NavLink>
         <NavLink
           end
-          to="/dashboard"
+          to="/profile"
           onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive ? activeClassMobile : initialClassMobile
-          }>
+          className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
           Dashboard
         </NavLink>
-        <NavLink
-          end
-          to="/host"
-          onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive ? activeClassMobile : initialClassMobile
-          }>
-          Host
-        </NavLink>
-        <NavLink
-          end
-          to="/login"
-          onClick={closeMenu}
-          className={({ isActive }) =>
-            isActive ? activeClassMobile : initialClassMobile
-          }>
-          Login
-        </NavLink>
+        {currentUser?.venueManager && (
+          <NavLink
+            end
+            to="/host"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
+            Host
+          </NavLink>
+        )}
+        {!currentUser && (
+          <NavLink
+            end
+            to="/login"
+            onClick={closeMenu}
+            className={({ isActive }) => (isActive ? activeClassMobile : initialClassMobile)}>
+            Login
+          </NavLink>
+        )}
       </nav>
       {/* Backdrop to close menu on click outside */}
       {isMenuOpen && (

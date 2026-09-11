@@ -5,13 +5,15 @@ import { getBookedVenues } from "../services/getBookedVenues";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import { Loader } from "../../../shared/components/ui/Loader";
 import type { BookedVenueResponse } from "../types/bookings";
+import { useParams } from "react-router";
 
 export const BookedVenueSection = () => {
   const { currentUser } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [bookedVenues, setBookedVenues] = useState<BookedVenueResponse | null>(null);
-  const [currentDate, setCurrentDate] = useState<Date | null>(null);
+
+  const { name } = useParams();
 
   useEffect(() => {
     const loadBookedVenues = async () => {
@@ -22,9 +24,11 @@ export const BookedVenueSection = () => {
       try {
         setLoading(true);
         setError(null);
-        const result = await getBookedVenues(currentUser);
+
+        const profileName = name ?? currentUser.userName;
+
+        const result = await getBookedVenues({ user: currentUser, profileName });
         setBookedVenues(result);
-        setCurrentDate(new Date());
       } catch (caughtError) {
         if (caughtError instanceof Error) {
           setError(caughtError.message);
@@ -37,23 +41,17 @@ export const BookedVenueSection = () => {
     };
 
     loadBookedVenues();
-  }, [currentUser]);
+  }, [currentUser, name]);
 
-  if (!currentDate) {
-    return;
-  }
-
-  const currentTimeStamp = currentDate?.getTime();
+  const currentDate = new Date();
 
   const upcomingBookings =
-    currentTimeStamp === undefined
-      ? []
-      : (bookedVenues?.data
-          .filter((booking) => new Date(booking.dateTo) > currentDate)
-          .sort(
-            (firsBooking, lastBooking) =>
-              Date.parse(firsBooking.dateFrom) - Date.parse(lastBooking.dateFrom)
-          ) ?? []);
+    bookedVenues?.data
+      .filter((booking) => new Date(booking.dateTo) > currentDate)
+      .sort(
+        (firstBooking, lastBooking) =>
+          Date.parse(firstBooking.dateFrom) - Date.parse(lastBooking.dateFrom)
+      ) ?? [];
 
   return (
     <section aria-labelledby="bookings-heading" className="mt-12 border-t border-gray-300 pt-10">
@@ -68,7 +66,6 @@ export const BookedVenueSection = () => {
 
       {!loading &&
         !error &&
-        currentDate &&
         (upcomingBookings.length > 0 ? (
           <ul className="grid gap-6 md:grid-cols-2">
             {upcomingBookings.map((booking) => (
@@ -90,7 +87,7 @@ export const BookedVenueSection = () => {
           </ul>
         ) : (
           <p className="bg-card rounded-xl border border-gray-400 p-6 text-center">
-            You have no upcoming bookings.
+            No upcoming bookings.
           </p>
         ))}
     </section>

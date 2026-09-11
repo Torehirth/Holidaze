@@ -8,6 +8,8 @@ type AuthProviderProps = {
 };
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser);
+
   const login = (user: AuthUser) => {
     localStorage.setItem("userName", user.userName);
     localStorage.setItem("email", user.email);
@@ -18,7 +20,28 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setCurrentUser(user);
   };
 
-  const [currentUser, setCurrentUser] = useState<AuthUser | null>(getStoredUser);
+  const updateCurrentUser = (updates: Partial<AuthUser>) => {
+    if (!currentUser) {
+      return;
+    }
 
-  return <AuthContext value={{ currentUser, login, setCurrentUser }}>{children}</AuthContext>;
+    const updatedUser = {
+      ...currentUser,
+      ...updates,
+    };
+
+    localStorage.setItem("userName", updatedUser.userName);
+    localStorage.setItem("email", updatedUser.email);
+    localStorage.setItem("accessToken", updatedUser.accessToken);
+    localStorage.setItem("venueManager", String(updatedUser.venueManager));
+    localStorage.setItem("profileImageURL", updatedUser.profileImageURL ?? "");
+
+    setCurrentUser(updatedUser);
+  };
+
+  return (
+    <AuthContext value={{ currentUser, login, setCurrentUser, updateCurrentUser }}>
+      {children}
+    </AuthContext>
+  );
 };

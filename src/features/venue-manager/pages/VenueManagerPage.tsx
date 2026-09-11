@@ -42,6 +42,13 @@ export const VenueManagerPage = () => {
     loadUserVenues();
   }, [currentUser]);
 
+  const handleDeletedVenue = (deletedVenueId: string) => {
+    const remainingVenues = venues.filter((venue) => {
+      return venue.id !== deletedVenueId;
+    });
+    setVenues(remainingVenues);
+  };
+
   return (
     <>
       <title>Manage venues | Holidaze</title>
@@ -120,7 +127,7 @@ export const VenueManagerPage = () => {
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {venues.map((venue) => (
               <li key={venue.id}>
-                <MyVenueCard venues={venue} />
+                <MyVenueCard venues={venue} onDeleted={handleDeletedVenue} />
               </li>
             ))}
           </ul>

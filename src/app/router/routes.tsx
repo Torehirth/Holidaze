@@ -8,12 +8,13 @@ import { ProfilePage } from "../../features/profile/pages/ProfilePage";
 import { CreateVenuePage } from "../../features/venue-manager/pages/CreateVenuePage";
 import { EditVenuePage } from "../../features/venue-manager/pages/EditVenuePage";
 import { VenueManagerPage } from "../../features/venue-manager/pages/VenueManagerPage";
-import { VenueBookingsPage } from "../../features/venue-manager/pages/VenueBookingsPage";
+import { ViewVenueBookingsPage } from "../../features/venue-manager/pages/ViewVenueBookingsPage";
 import { VenueDetailsPage } from "../../features/venues/pages/VenueDetailsPage";
 import { VenuesPage } from "../../features/venues/pages/VenuesPage";
 import { RootLayout } from "../../shared/layouts/RootLayout";
 import type { RouteObject } from "react-router";
 import { RouteErrorBoundary } from "../../shared/components/ui/feedback/RouteErrorBoundary";
+// import { UserProfilePage } from "../../features/profile/pages/UserProfilePage";
 
 export const routes: RouteObject[] = [
   {
@@ -41,10 +42,7 @@ export const routes: RouteObject[] = [
         path: "venues/:id",
         element: <VenueDetailsPage />,
       },
-      {
-        path: "*",
-        element: <NotFoundPage />,
-      },
+
       {
         element: <ProtectedRoute />,
         children: [
@@ -55,6 +53,10 @@ export const routes: RouteObject[] = [
           {
             path: "profile/edit",
             element: <EditProfilePage />,
+          },
+          {
+            path: "profiles/:name",
+            element: <ProfilePage />,
           },
         ],
       },
@@ -75,9 +77,13 @@ export const routes: RouteObject[] = [
           },
           {
             path: "host/venues/:id/bookings",
-            element: <VenueBookingsPage />,
+            element: <ViewVenueBookingsPage />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

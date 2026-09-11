@@ -24,7 +24,7 @@ export const EditProfilePage = () => {
         setLoading(true);
         setError(null);
 
-        const profileObj = await getProfile(currentUser);
+        const profileObj = await getProfile(currentUser, currentUser.userName);
         setProfile(profileObj.data);
       } catch (caughtError) {
         if (caughtError instanceof Error) {

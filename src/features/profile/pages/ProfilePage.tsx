@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
 import type { User } from "../types/user";
 import { Loader } from "../../../shared/components/ui/Loader";
+import { useParams } from "react-router";
 
 export const ProfilePage = () => {
   const { currentUser } = useAuth();
@@ -13,17 +14,21 @@ export const ProfilePage = () => {
   const [error, setError] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
+  const { name } = useParams();
+
   useEffect(() => {
     const loadProfile = async () => {
       if (!currentUser) {
         return;
       }
 
+      const profileName = name ?? currentUser.userName;
+
       try {
         setLoading(true);
         setError(null);
 
-        const result = await getProfile(currentUser);
+        const result = await getProfile(currentUser, profileName);
         setUser(result.data);
       } catch (caughtError) {
         if (caughtError instanceof Error) {
@@ -36,7 +41,9 @@ export const ProfilePage = () => {
       }
     };
     loadProfile();
-  }, [currentUser]);
+  }, [currentUser, name]);
+
+  const isOwnProfile = currentUser?.userName === user?.name;
 
   return (
     <>
@@ -45,7 +52,7 @@ export const ProfilePage = () => {
         <h1 className="sr-only">My profile</h1>
         {loading && <Loader />}
         {error && <FeedbackMessage variant="error" message={error} />}
-        {user && <UserSection user={user} />}
+        {user && <UserSection isOwnProfile={isOwnProfile} user={user} />}
         <BookedVenueSection />
       </div>
     </>

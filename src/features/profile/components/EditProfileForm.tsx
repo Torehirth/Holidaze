@@ -57,8 +57,6 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
         profileImageURL: profileObj.data.avatar?.url,
       });
 
-      console.log(currentUser);
-
       navigate("/profile", { replace: true });
     } catch (caughtError) {
       if (caughtError instanceof Error) {

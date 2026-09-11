@@ -17,6 +17,8 @@ Particular focus areas include:
 - Strong TypeScript typing
 - Maintainable code structure
 
+[Holidaze website](tmh-holidaze.netlify.app)
+
 ---
 
 ## Tech Stack & Choices

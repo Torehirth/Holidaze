@@ -92,6 +92,7 @@ export const Header = () => {
         id="mobile-navigation"
         aria-label="Mobile navigation"
         aria-hidden={!isMenuOpen}
+        inert={!isMenuOpen}
         className={`bg-foreground text-background fixed top-20 right-0 bottom-0 z-500 flex w-full max-w-sm flex-col items-center gap-4 px-8 pt-16 pb-8 text-center transition-transform duration-300 ease-in-out md:hidden ${isMenuOpen ? "translate-x-0" : "translate-x-[200%]"} `}>
         <NavLink
           end

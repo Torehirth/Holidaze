@@ -1,3 +1,6 @@
+<p align="center"><img width="900" height="510" alt="Holidaze previes" src="https://github.com/user-attachments/assets/c1832683-c0b2-4717-9359-6944b4970531" /></p>
+
+
 # Holidaze
 
 Holidaze is a venue booking platform built as my Project Exam 2 submission for the Noroff Front-end Development programme.

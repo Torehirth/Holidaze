@@ -29,10 +29,7 @@ export const VenueCard = ({
 }: VenueProps) => {
   return (
     <article className="bg-card focus-within:ring-foreground h-full overflow-hidden rounded-2xl capitalize shadow-sm transition-all focus-within:ring-2 hover:border hover:shadow-md">
-      <Link
-        to={`/venues/${id}`}
-        aria-label={`View venue details for ${name}`}
-        className="block focus-visible:outline-none">
+      <Link to={`/venues/${id}`} className="block focus-visible:outline-none">
         <img
           src={imageURL || placeholderImage}
           alt={imageAlt || description}

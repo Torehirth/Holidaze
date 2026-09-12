@@ -47,9 +47,9 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <title>{`${currentUser?.userName}'s profile | Holidaze`}</title>
+      <title>{`${user?.name ?? currentUser?.userName ?? "Profile"}'s profile | Holidaze`}</title>
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="sr-only">My profile</h1>
+        <h1 className="sr-only">{user?.name ? `${user.name}'s profile` : "Profile"}</h1>
         {loading && <Loader />}
         {error && <FeedbackMessage variant="error" message={error} />}
         {user && <UserSection isOwnProfile={isOwnProfile} user={user} />}

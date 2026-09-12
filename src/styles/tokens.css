@@ -1,4 +1,4 @@
-:root {
+@theme {
   /* Fonts */
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
@@ -12,10 +12,9 @@
   --color-card: #ffffff;
   --color-secondary: #f5f5f4;
   --color-destructive: #dc2626;
+  --color-success: #effdf3;
+  --color-border-light: rgba(0, 0, 0, 0.08);
 
-  /* Radius */
-  --radius-default: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
+  /* Extra breakpoints */
+  --breakpoint-xs: 28rem;
 }

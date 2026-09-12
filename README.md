@@ -4,6 +4,8 @@ Holidaze is a modern venue booking platform built as the final Project Exam 2 su
 
 The goal of the project is to create a responsive and accessible booking experience where customers can browse and book venues, while venue managers can create and manage listings.
 
+See the live website here: [Holidaze](https://tmh-holidaze.netlify.app/)
+
 ## Project Goal
 
 The project focuses on building a maintainable and scalable front-end application while following the requirements from the Project Exam brief.

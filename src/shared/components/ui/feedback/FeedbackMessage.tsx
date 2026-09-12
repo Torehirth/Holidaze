@@ -27,7 +27,7 @@ const feedbackVariants = {
 export const FeedbackMessage = ({ variant, title, message }: FeedbackMessageProps) => {
   const { icon: Icon, containerClasses, iconClasses } = feedbackVariants[variant];
 
-  const ariaRole = variant === "success" ? "warning" : "alert";
+  const ariaRole = variant === "success" ? "status" : "alert";
 
   return (
     <div

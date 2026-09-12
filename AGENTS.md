@@ -1,156 +1,157 @@
-# AGENT.md
+# AGENTS.md
 
 ## Project Overview
 
-Holidaze is a modern booking platform built as part of Noroff Project Exam 2.
+Holidaze is a venue booking application created for Noroff Project Exam 2.
 
-Tech stack:
+The application is built with:
 
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
+- React Router
 
-The project prioritizes:
+The project uses the Noroff Holidaze API for venues, bookings, authentication and profile data.
 
-- Clean architecture
-- Readable code
-- Accessibility
-- Reusable UI components
-- Maintainability
-- Beginner-friendly patterns
+## Development Priorities
 
----
+When modifying this project:
 
-## Project Goals
+1. Keep solutions readable and easy to understand
+2. Prefer existing project patterns before introducing new ones
+3. Avoid unnecessary abstractions and dependencies
+4. Maintain TypeScript type safety
+5. Preserve accessibility and responsive behaviour
+6. Keep API logic separate from UI components
+7. Reuse existing shared components where appropriate
 
-When contributing to this project:
+This is a student project, so straightforward implementations are preferred over complex architectural patterns.
 
-1. Prioritize readability over cleverness
-2. Prefer simple, maintainable solutions
-3. Keep components reusable and focused
-4. Follow accessibility best practices
-5. Maintain strong TypeScript typing
+## Architecture
 
-Avoid overengineering.
+The application primarily follows a feature-based structure.
 
----
+Feature-specific pages, components, services and types should stay close to the feature they belong to.
 
-## Architecture Preferences
+Reusable application code belongs under `shared`.
 
-Prefer clear separation of concerns.
-
-Example structure:
+Typical structure:
 
 ```txt
 src/
-├── components/
 ├── features/
-├── hooks/
+│   └── ...
+├── shared/
+│   ├── components/
+│   ├── constants/
+│   ├── types/
+│   └── utils/
 ├── layouts/
-├── pages/
-├── services/
-├── types/
-├── utils/
+├── App.tsx
+└── main.tsx
 ```
 
-Guidelines:
+Do not move feature-specific code into `shared` unless it is genuinely reusable across features.
 
-- `components/` → reusable UI
-- `pages/` → route-level pages
-- `services/` → API/data logic
-- `hooks/` → reusable hooks
-- `types/` → shared TypeScript types
-- `utils/` → helper functions
+## React
 
----
-
-## React Guidelines
-
-Preferred:
+Prefer:
 
 - Functional components
-- Hooks
+- React hooks
+- Small focused components
 - Composition
-- Small reusable components
+- Local state for simple UI state
+- Context only for state that needs to be available across multiple parts of the application
 
 Avoid:
 
-- Large components with many responsibilities
-- Unnecessary abstractions
-- Premature optimization
+- Large components with several unrelated responsibilities
+- Unnecessary effects
+- Duplicated state
+- Complex state-management libraries without a clear need
 
----
+## TypeScript
 
-## TypeScript Guidelines
-
-- Prefer explicit types
 - Avoid `any`
-- Type API responses
-- Keep interfaces/types reusable
+- Type component props
+- Type API responses and request data
+- Reuse existing types when appropriate
+- Keep API types aligned with the Noroff API
+- Do not use fallback values that change the intended type unless there is a clear reason
 
-Example:
+## API Services
 
-```ts
-type Venue = {
-  id: string;
-  name: string;
-  price: number;
-};
-```
+API requests should normally be handled by service functions rather than directly inside UI components.
 
----
+Services should:
+
+- Use the existing API constants
+- Return typed data
+- Check `response.ok`
+- Provide useful errors
+- Include authentication and API-key headers only where required
+
+Components are responsible for displaying loading, success and error states.
+
+## Authentication and Permissions
+
+Authentication state is handled through the existing authentication context.
+
+Protected routes are used for:
+
+- Registered-user functionality
+- Venue-manager-only functionality
+
+Do not expose venue-manager actions to users who do not have the required role.
 
 ## Styling
 
-Use Tailwind CSS.
+Use Tailwind CSS and follow the existing Holidaze design system.
 
-Guidelines:
+Keep:
 
-- Keep spacing consistent
-- Prefer reusable patterns
-- Avoid unnecessary utility duplication
-- Prioritize responsive layouts
+- Spacing consistent
+- Layouts responsive
+- Visual hierarchy clear
+- Existing button and feedback components reusable
 
----
+Avoid introducing separate styling approaches unless necessary.
 
 ## Accessibility
 
-Prioritize:
+Maintain:
 
 - Semantic HTML
-- Keyboard accessibility
 - Correct heading hierarchy
-- Accessible form labels
-- Meaningful alt text
+- Keyboard accessibility
+- Visible focus states
+- Form labels
+- Useful alternative text
+- Accessible feedback messages
+- Appropriate colour contrast
 
----
+Do not add unnecessary ARIA attributes when native HTML or visible content already provides the required accessible information.
 
 ## Code Quality
 
-Before changes are considered complete:
-
-- Project builds successfully
-- Linting passes
-- Formatting is clean
-- Types are correct
-
-Commands:
+Before considering a change complete, run:
 
 ```bash
-npm run dev
 npm run build
 npm run lint
 npm run format
 ```
 
----
+Changes should not introduce TypeScript, ESLint or build errors.
 
 ## Decision Making
 
-When multiple solutions exist:
+When several approaches are possible:
 
-1. Choose readability
-2. Choose maintainability
-3. Prefer beginner-friendly patterns
-4. Avoid unnecessary complexity
+1. Prefer the simplest approach that correctly solves the problem
+2. Follow patterns already used by the project
+3. Prefer readability over cleverness
+4. Avoid premature optimisation
+5. Do not add dependencies for problems that can be solved clearly with existing tools

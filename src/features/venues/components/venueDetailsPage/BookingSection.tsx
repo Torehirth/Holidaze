@@ -40,15 +40,19 @@ export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps)
     };
 
     try {
-      setLoading(true);
-      setError(null);
       setSuccess(null);
+      setError(null);
+      setLoading(true);
 
       await bookVenue(bookingData);
-      await onBookingCreated();
-      setGuests(1);
       setSelectedRange(undefined);
-      setSuccess("Successfully booked your stay!🎉");
+      setGuests(1);
+      setSuccess("Successfully booked your stay! 🎉");
+      try {
+        await onBookingCreated();
+      } catch (err) {
+        console.error("Failed to refresh venue data after booking", err);
+      }
     } catch (caughtError) {
       if (caughtError instanceof Error) {
         setError(caughtError.message);
@@ -67,7 +71,6 @@ export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps)
     })) ?? [];
 
   const checkInDate = selectedRange?.from ? formatDate(selectedRange.from) : "Select a date";
-
   const checkOutDate = selectedRange?.to ? formatDate(selectedRange.to) : "Select a date";
 
   const changeGuests = (change: number) => {

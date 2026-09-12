@@ -24,7 +24,6 @@ export const VenuesPage = () => {
   const handleLoadMore = () => {
     if (loading) return;
 
-    setLoading(true);
     setPage((pageNumber) => pageNumber + 1);
   };
 
@@ -33,6 +32,7 @@ export const VenuesPage = () => {
       try {
         setLoading(true);
         setError(null);
+
         const result = await getVenues(page, query);
 
         setVenues((currentVenues) =>

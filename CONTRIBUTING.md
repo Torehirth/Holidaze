@@ -1,10 +1,10 @@
 # Contributing to Holidaze
 
-Thanks for contributing to Holidaze 🎉
+Thanks for your interest in contributing to Holidaze.
 
-Holidaze is a booking platform built with React, TypeScript, Vite, and Tailwind CSS as part of Noroff Project Exam 2.
+Holidaze is a venue booking platform built with React, TypeScript, Vite and Tailwind CSS as part of Noroff Project Exam 2.
 
-The goal of the project is to create a clean, maintainable, accessible, and responsive application.
+Contributions should follow the existing project structure and favour readable, accessible and maintainable solutions.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ Clone the repository and install dependencies:
 npm install
 ```
 
-Run the development server:
+Start the development server:
 
 ```bash
 npm run dev
@@ -26,56 +26,73 @@ Build the project:
 npm run build
 ```
 
-Lint the project:
+Run ESLint:
 
 ```bash
 npm run lint
 ```
 
-Format code:
+Format the project:
 
 ```bash
 npm run format
 ```
 
+## Environment Variables
+
+The project uses a Noroff API key for protected API requests.
+
+Create a `.env` file in the project root:
+
+```env
+VITE_API_KEY=your_api_key
+```
+
+Do not commit `.env` files or API keys to the repository.
+
 ## Code Guidelines
 
-Please try to:
+Please:
 
 - Write readable and maintainable code
-- Use TypeScript types when possible
-- Keep components reusable and focused
+- Use TypeScript types instead of `any`
+- Follow the existing feature-based structure
+- Keep components focused
+- Keep API requests in service functions
+- Reuse existing shared components where appropriate
 - Follow semantic HTML and accessibility best practices
-- Keep styling consistent with Tailwind CSS
+- Keep styling consistent with the existing Tailwind design system
 
-Preferred:
+Prefer:
 
 - Functional React components
 - Hooks
-- Small reusable components
-- Clear naming conventions
+- Clear naming
+- Simple solutions
+- Existing project patterns
 
 Avoid:
 
-- Large components with too many responsibilities
 - Unnecessary dependencies
-- Overly complex solutions
+- Premature abstractions
+- Large components with unrelated responsibilities
+- Duplicate implementations of existing shared functionality
 
-## Branches & Commits
+## Branches and Commits
 
-Use descriptive branch names:
+Use descriptive branch names, for example:
 
 ```txt
-feature/login-page
-fix/mobile-nav
-refactor/api-service
+feature/venue-booking
+fix/mobile-navigation
+refactor/venue-service
 ```
 
-Write clear commit messages:
+Use clear commit messages:
 
 ```txt
 feat: add venue search
-fix: resolve mobile menu issue
+fix: handle booking refresh errors
 docs: update README
 ```
 
@@ -84,8 +101,17 @@ docs: update README
 Please make sure:
 
 - [ ] The project builds successfully
-- [ ] Linting passes
+- [ ] ESLint passes
 - [ ] Code is formatted
-- [ ] Changes have been tested
+- [ ] TypeScript errors have been resolved
+- [ ] Changes have been tested in the browser
+- [ ] Responsive behaviour has been checked
+- [ ] Relevant accessibility has been checked
 
-Thanks for helping improve Holidaze 🚀
+Run:
+
+```bash
+npm run build
+npm run lint
+npm run format
+```

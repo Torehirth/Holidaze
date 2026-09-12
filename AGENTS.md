@@ -45,9 +45,9 @@ src/
 ├── shared/
 │   ├── components/
 │   ├── constants/
+│   ├── layouts/
 │   ├── types/
 │   └── utils/
-├── layouts/
 ├── App.tsx
 └── main.tsx
 ```

@@ -26,8 +26,8 @@ export const mapVenueToFormValues = (venue: Venue): VenueFormValues => {
       zip: venue.location.zip ?? "",
       country: venue.location.country ?? "",
       continent: venue.location.continent ?? "",
-      lat: venue.location.lat ?? "",
-      lng: venue.location.lng ?? "",
+      lat: venue.location.lat,
+      lng: venue.location.lng,
     },
   };
 };

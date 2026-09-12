@@ -8,8 +8,8 @@ export const HostSection = ({ venue }: VenueSectionProps) => {
       <h2 className="mb-4 text-xl font-medium">Hosted by</h2>
       <Link to={`/profiles/${venue.owner.name}`} className="flex items-center gap-4">
         <img
-          src={venue.owner.avatar.url ?? placeholderProfile}
-          alt={venue.owner.avatar.url ?? "Owners avatar"}
+          src={venue.owner.avatar.url || placeholderProfile}
+          alt={venue.owner.avatar.alt || "Owner's avatar"}
           className="h-14 w-14 rounded-full object-cover hover:opacity-80 active:scale-[0.95]"
         />
         <div>

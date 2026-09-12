@@ -10,7 +10,9 @@ The application allows users to discover and book venues, while registered venue
 
 The goal of Holidaze was to build a complete front-end booking application using the Noroff Holidaze API.
 
-I wanted the application to be easy to navigate and maintain while keeping the implementation understandable and avoiding unnecessary complexity. The project uses a feature-based structure, reusable UI components and typed API services to keep different parts of the application separated.
+I wanted the application to be easy to navigate and maintain while keeping the implementation understandable and avoiding unnecessary complexity.
+
+The project uses a feature-based structure, reusable UI components and typed API services to keep different parts of the application separated.
 
 Accessibility, responsive design and clear feedback to the user have also been important throughout the project.
 
@@ -18,11 +20,11 @@ Accessibility, responsive design and clear feedback to the user have also been i
 
 ### Visitors
 
-- Browse available venues
+- Browse venues
 - Search for venues
 - View venue details
 - View venue facilities and location information
-- View existing bookings and unavailable dates
+- View unavailable booking dates
 - Register an account
 
 ### Registered Users
@@ -110,8 +112,6 @@ Particular attention has been given to:
 - Accessible feedback and error messages
 - Sufficient colour contrast
 
-The design follows the project's visual style guide while aiming to remain readable and usable across different screen sizes.
-
 ## Project Structure
 
 The project uses a feature-based structure with shared resources for reusable functionality.
@@ -128,3 +128,107 @@ src/
 ├── layouts/
 ├── App.tsx
 └── main.tsx
+```
+
+Feature folders contain functionality related to a particular area of the application, such as pages, components, services and feature-specific types.
+
+`shared/` contains code intended to be reused across multiple features.
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/Torehirth/Holidaze.git
+cd Holidaze
+```
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the project root and add your Noroff API key:
+
+```env
+VITE_API_KEY=your_api_key
+```
+
+The API key is used by requests that require access to protected Noroff API functionality.
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+### Run ESLint
+
+```bash
+npm run lint
+```
+
+### Format the project
+
+```bash
+npm run format
+```
+
+## Deployment
+
+The application is deployed with Netlify.
+
+The production build is created with:
+
+```bash
+npm run build
+```
+
+and the generated `dist` directory is published.
+
+A Netlify SPA redirect is included so React Router routes can be accessed directly or refreshed without returning a server 404.
+
+## Design
+
+The Holidaze interface follows a clean, minimal visual style with neutral colours, generous spacing and responsive layouts.
+
+The design system includes reusable patterns for:
+
+- Buttons
+- Form controls
+- Venue cards
+- Feedback messages
+- Typography
+- Spacing
+- Colours
+- Responsive breakpoints
+
+## Future Improvements
+
+Possible improvements beyond the exam scope include:
+
+- More advanced venue filtering
+- Improved preservation of venue-list state when navigating back from a venue
+- Additional automated testing
+- Further performance optimisation
+- Image carousel for venues with multiple images
+
+## Documentation
+
+- [Contributing](./CONTRIBUTING.md)
+- [Agent Instructions](./AGENTS.md)

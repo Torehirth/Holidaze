@@ -7,6 +7,7 @@ import { FeedbackMessage } from "../../../shared/components/ui/feedback/Feedback
 import type { User } from "../types/user";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { useParams } from "react-router";
+import { UserProfileVenueSection } from "../components/UserProfileVenueSection";
 
 export const ProfilePage = () => {
   const { currentUser } = useAuth();
@@ -45,15 +46,25 @@ export const ProfilePage = () => {
 
   const isOwnProfile = currentUser?.userName === user?.name;
 
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <FeedbackMessage variant="error" message={error} />;
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
-      <title>{`${user?.name ?? currentUser?.userName ?? "Profile"}'s profile | Holidaze`}</title>
+      <title>{`${user.name ?? currentUser?.userName ?? "Profile"}'s profile | Holidaze`}</title>
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="sr-only">{user?.name ? `${user.name}'s profile` : "Profile"}</h1>
-        {loading && <Loader />}
-        {error && <FeedbackMessage variant="error" message={error} />}
-        {user && <UserSection isOwnProfile={isOwnProfile} user={user} />}
-        <BookedVenueSection />
+        <h1 className="sr-only">{user.name ? `${user.name}'s profile` : "Profile"}</h1>
+        <UserSection isOwnProfile={isOwnProfile} user={user} />
+        {isOwnProfile ? <BookedVenueSection /> : <UserProfileVenueSection user={user} />}
       </div>
     </>
   );

@@ -5,8 +5,11 @@ import { Footer } from "./Footer";
 export const RootLayout = () => {
   return (
     <>
+      <a href="#main" className="sr-only">
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Outlet />
       </main>
       <Footer />

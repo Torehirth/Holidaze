@@ -10,7 +10,7 @@ import { deleteVenue } from "./../services/deleteVenue";
 
 type VenueCardProps = {
   venues: Venue;
-  onDeleted: (id: string) => void;
+  onDeleted?: (id: string) => void;
 };
 
 export const MyVenueCard = ({ venues, onDeleted }: VenueCardProps) => {
@@ -19,7 +19,7 @@ export const MyVenueCard = ({ venues, onDeleted }: VenueCardProps) => {
   const { currentUser } = useAuth();
 
   const handleDelete = async () => {
-    if (!currentUser) {
+    if (!currentUser || !onDeleted) {
       return;
     }
     try {

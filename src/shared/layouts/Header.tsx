@@ -58,8 +58,9 @@ export const Header = () => {
             <NavLink
               end
               to="/profile"
-              aria-label="Go to profile"
-              className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
+              title={`${currentUser.userName}'s profile`}
+              aria-label="Go to your profile"
+              className="hover:opacity-70 active:scale-90">
               <img
                 className="h-8 w-8 rounded-full object-cover md:h-10 md:w-10"
                 src={currentUser.profileImageURL ?? profilePlaceHolderImage}

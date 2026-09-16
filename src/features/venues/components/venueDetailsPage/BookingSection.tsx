@@ -88,9 +88,7 @@ export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps)
   return (
     <aside className="bg-card rounded-2xl border border-gray-400 p-6 shadow-md lg:sticky lg:top-64">
       <div className="mb-6 flex items-baseline gap-1">
-        <span aria-label="Price per night" className="text-2xl font-medium">
-          ${venue.price}
-        </span>
+        <span className="text-2xl font-medium">${venue.price}</span>
         <span aria-hidden="true">/ night</span>
       </div>
       <form aria-label="Book this venue" className="space-y-4" onSubmit={handleSubmit}>

@@ -51,6 +51,7 @@ export const VenuesSearchForm = ({ variant = "primary" }: VenuesSearchFormProps)
               setShowWarning(false);
             }}
             type="search"
+            autoComplete="off"
             placeholder="Search for a venue"
             className="h-14 w-full flex-2 rounded-2xl border border-stone-200 bg-stone-50 pr-6 pl-16 text-lg text-stone-900 shadow-sm outline-none placeholder:text-stone-500 focus:border-stone-500 focus:ring-2 focus:ring-stone-300 lg:min-w-125 lg:pl-6"
           />

@@ -37,9 +37,9 @@ export const VenueCard = ({
         />
         <div className="space-y-3 p-4">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-foreground overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
+            <h2 className="text-foreground overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
               {name}
-            </h3>
+            </h2>
             <div className="flex shrink-0 items-center gap-1">
               <Star aria-hidden="true" className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span className="text-sm" aria-hidden="true">

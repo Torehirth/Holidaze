@@ -52,9 +52,7 @@ export const MyVenueCard = ({ venues, onDeleted }: VenueCardProps) => {
 
   return (
     <article className="bg-card focus-within:ring-foreground hover:ring-foreground/50 flex h-full flex-col overflow-hidden rounded-2xl capitalize shadow-sm transition-all focus-within:ring-2 hover:shadow-md hover:ring active:ring-2">
-      <Link
-        to={`/venues/${venues.id}`}
-        aria-label={venues.name ? `Go to ${venues.name}` : "Go to the venue"}>
+      <Link to={`/venues/${venues.id}`}>
         <div className="relative">
           <img
             src={venues.media?.[0]?.url || placeholderImage}

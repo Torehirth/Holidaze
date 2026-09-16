@@ -59,7 +59,7 @@ export const VenueDetailsPage = () => {
 
   return (
     <>
-      <title>{venue?.name} | Holidaze</title>
+      <title>{venue?.name ? `${venue?.name} | Holidaze` : "Venue details page | Holidaze"}</title>
       <meta name="description" content={venue?.description} />
       <link rel="canonical" href={url} />
       <meta property="og:type" content="website" />

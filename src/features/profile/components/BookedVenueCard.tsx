@@ -23,7 +23,6 @@ export const BookedVenueCard = ({
   const isGoingOn = currentTimeStamp >= startTimeStamp && currentTimeStamp <= endTimeStamp;
 
   return (
-    // focus-within:ring-offset-1 focus-within:ring-muted
     <>
       <Link to={`/venues/${venueId}`}>
         <article className="bg-card hover:ring-foreground/50 overflow-hidden rounded-2xl shadow-sm transition-all hover:shadow-md hover:ring active:ring-2 sm:flex">
@@ -38,15 +37,9 @@ export const BookedVenueCard = ({
             <div className="flex items-center justify-between">
               <h3 className="mt-1 line-clamp-2 max-w-4/6 text-lg font-medium">{venueName}</h3>
               {isGoingOn ? (
-                <p
-                  className="bg-accent w-fit rounded-2xl px-2 py-1 text-sm font-medium"
-                  aria-label="Ongoing stay">
-                  Ongoing
-                </p>
+                <p className="bg-accent w-fit rounded-2xl px-2 py-1 text-sm font-medium">Ongoing</p>
               ) : (
-                <p
-                  className="w-fit rounded-2xl bg-green-200 px-2 py-1 text-sm font-medium"
-                  aria-label="Upcoming stay">
+                <p className="w-fit rounded-2xl bg-green-200 px-2 py-1 text-sm font-medium">
                   Upcoming
                 </p>
               )}

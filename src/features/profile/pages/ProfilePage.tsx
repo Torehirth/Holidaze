@@ -60,7 +60,7 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <title>{isOwnProfile ? "My profile" : (user?.name ?? "Profile")} | Holidaze</title>
+      <title>{`${isOwnProfile ? "My profile" : user.name} | Holidaze`}</title>
       <meta
         name="description"
         content={

@@ -64,15 +64,14 @@ export const Header = () => {
               <img
                 className="h-8 w-8 rounded-full object-cover md:h-10 md:w-10"
                 src={currentUser.profileImageURL ?? profilePlaceHolderImage}
-                alt={`${currentUser.userName}'s profile image`}
+                alt={currentUser.userName ? currentUser.userName : "user profile"}
               />
             </NavLink>
           ) : (
             <NavLink
               to="/login"
-              aria-label="Go to login"
-              className="flex flex-col items-center justify-center hover:opacity-70 active:scale-90">
-              <span className={initialClass}>Log in</span>
+              className="flex flex-col items-center justify-center px-2 font-medium hover:opacity-70 active:scale-90">
+              Log in
             </NavLink>
           )}
           <button

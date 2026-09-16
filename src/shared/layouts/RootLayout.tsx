@@ -9,7 +9,7 @@ export const RootLayout = () => {
         Skip to main content
       </a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
       <Footer />

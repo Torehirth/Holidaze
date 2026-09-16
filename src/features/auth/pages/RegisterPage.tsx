@@ -97,7 +97,6 @@ export const RegisterPage = () => {
               name="email"
               type="email"
               autoComplete="email"
-              title="Enter a valid stud.noroff.no email address"
               placeholder="name@stud.noroff.no"
               pattern="^[^\s@]+@stud\.noroff\.no$"
               required

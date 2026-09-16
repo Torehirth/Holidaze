@@ -77,7 +77,6 @@ export const LoginPage = () => {
               type="email"
               autoComplete="email"
               placeholder="name@stud.noroff.no"
-              title="Enter a valid stud.noroff.no email address"
               pattern="^[^\s@]+@stud\.noroff\.no$"
               required
               className={inputStyles}

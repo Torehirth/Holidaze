@@ -53,9 +53,21 @@ export const VenueDetailsPage = () => {
     setVenue(result.data);
   };
 
+  const description = venue?.description.slice(0, 155);
+  const url = `https://tmh-holidaze.netlify.app/venues/${venue?.id}`;
+  const image = venue?.media[0]?.url ?? "https://tmh-holidaze.netlify.app/default_meta_og.webp";
+
   return (
     <>
-      <title>{`${venue?.name ?? "Venue details"} | Holidaze`}</title>
+      <title>{venue?.name} | Holidaze</title>
+      <meta name="description" content={venue?.description} />
+      <link rel="canonical" href={url} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={venue?.name} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={image} />
+      <meta property="og:url" content={url} />
+
       <div>{loading && <Loader />}</div>
       <div className="mx-auto mt-12 max-w-full px-8">
         {!loading && !venue && error && (

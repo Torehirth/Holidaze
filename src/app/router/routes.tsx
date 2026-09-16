@@ -14,7 +14,6 @@ import { VenuesPage } from "../../features/venues/pages/VenuesPage";
 import { RootLayout } from "../../shared/layouts/RootLayout";
 import type { RouteObject } from "react-router";
 import { RouteErrorBoundary } from "../../shared/components/ui/feedback/RouteErrorBoundary";
-// import { UserProfilePage } from "../../features/profile/pages/UserProfilePage";
 
 export const routes: RouteObject[] = [
   {

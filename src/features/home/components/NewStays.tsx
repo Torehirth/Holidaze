@@ -43,13 +43,12 @@ export const NewStays = () => {
           <div>
             <NavLink
               to="/venues"
-              className="text-primary flex items-center gap-2 text-sm hover:opacity-70">
+              className="text-primary focus-within:ring-foreground flex items-center gap-0 text-sm wrap-anywhere whitespace-nowrap focus-within:ring hover:opacity-70 sm:gap-2 sm:whitespace-normal">
               Explore all venues
               <ArrowRight aria-hidden="true" className="text-primary h-4 w-4" />
             </NavLink>
           </div>
         </div>
-
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:overflow-visible">
           {loading && (
             <div className="flex w-full justify-center">

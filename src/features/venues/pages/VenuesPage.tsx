@@ -55,7 +55,17 @@ export const VenuesPage = () => {
 
   return (
     <>
-      <title>Venues | Holidaze</title>
+      <title>All venues | Holidaze</title>
+      <meta
+        name="description"
+        content="Explore all available venues on Holidaze — filter by location, price and amenities."
+      />
+      <link rel="canonical" href="https://tmh-holidaze.netlify.app/venues" />
+      <meta property="og:title" content="All venues | Holidaze" />
+      <meta property="og:description" content="Explore all available venues on Holidaze." />
+      <meta property="og:image" content="https://tmh-holidaze.netlify.app/default_meta_og.jpg" />
+      <meta property="og:url" content="https://tmh-holidaze.netlify.app/venues" />
+
       <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <header className="mb-8">
           <h1 className="text-2xl font-medium">Explore venues</h1>

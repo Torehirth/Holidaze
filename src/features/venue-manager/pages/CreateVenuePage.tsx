@@ -38,7 +38,10 @@ export const CreateVenuePage = () => {
 
   return (
     <>
-      <title>Create venue | Holidaze</title>
+      <title>Create a venue | Holidaze</title>
+      <meta name="description" content="List a new venue on Holidaze." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {error && <FeedbackMessage variant="error" message={error} />}
         <Link to="/host" className="mb-6 flex items-center gap-2 text-sm hover:opacity-70">

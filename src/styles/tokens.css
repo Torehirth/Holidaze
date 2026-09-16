@@ -1,6 +1,6 @@
 @theme {
   /* Fonts */
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
 
   /* Colours */
   --color-background: #fafaf9;

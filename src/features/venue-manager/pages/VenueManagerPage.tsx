@@ -51,7 +51,10 @@ export const VenueManagerPage = () => {
 
   return (
     <>
-      <title>Manage venues | Holidaze</title>
+      <title>Manage your venues | Holidaze</title>
+      <meta name="description" content="View and manage your listed venues." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         {error && <FeedbackMessage variant="error" message={error} />}
         {loading && <Loader />}

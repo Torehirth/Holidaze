@@ -55,6 +55,9 @@ export const LoginPage = () => {
   return (
     <>
       <title>Log in | Holidaze</title>
+      <meta name="description" content="Log in to your Holidaze account." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <section className="mx-auto mt-12 mb-8 flex max-w-md flex-col px-4 lg:mt-30">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-medium">Welcome back</h1>
@@ -74,7 +77,6 @@ export const LoginPage = () => {
               type="email"
               autoComplete="email"
               placeholder="name@stud.noroff.no"
-              title="Enter a valid stud.noroff.no email address"
               pattern="^[^\s@]+@stud\.noroff\.no$"
               required
               className={inputStyles}

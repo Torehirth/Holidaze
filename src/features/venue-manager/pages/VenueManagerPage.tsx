@@ -51,7 +51,10 @@ export const VenueManagerPage = () => {
 
   return (
     <>
-      <title>Manage venues | Holidaze</title>
+      <title>Manage your venues | Holidaze</title>
+      <meta name="description" content="View and manage your listed venues." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         {error && <FeedbackMessage variant="error" message={error} />}
         {loading && <Loader />}
@@ -59,7 +62,7 @@ export const VenueManagerPage = () => {
           aria-labelledby="dashboard-heading"
           className="to-accent from-background overflow-hidden rounded-2xl border border-amber-200 bg-linear-to-br p-6 shadow-sm sm:p-10">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
+            <div className="">
               <div className="bg-primary/10 mb-5 flex h-12 w-12 items-center justify-center rounded-2xl">
                 <House aria-hidden="true" className="text-primary h-6 w-6" />
               </div>
@@ -85,26 +88,32 @@ export const VenueManagerPage = () => {
           </h2>
           <dl className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-200">
-                <House aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <dt className="text-sm">Your venues</dt>
+              <dt className="text-sm">
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-amber-200">
+                  <House aria-hidden="true" className="h-5 w-5" />
+                </span>
+                Your venues
+              </dt>
               <dd className="mt-1 text-3xl font-medium">{venues.length}</dd>
             </div>
             <div className="rounded-2xl border border-sky-200 bg-sky-50 p-5 shadow-sm">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-200">
-                <CalendarDays aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <dt className="text-sm">Upcoming bookings</dt>
+              <dt className="text-sm">
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-sky-200">
+                  <CalendarDays aria-hidden="true" className="h-5 w-5" />
+                </span>
+                Upcoming bookings
+              </dt>
               <dd className="mt-1 text-3xl font-medium">
                 {venues.reduce((sum, venue) => sum + venue.bookings.length, 0)}
               </dd>
             </div>
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 shadow-sm">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-200">
-                <CalendarCheck aria-hidden="true" className="h-5 w-5" />
-              </div>
-              <dt className="text-sm">Next check-in</dt>
+              <dt className="text-sm">
+                <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-200">
+                  <CalendarCheck aria-hidden="true" className="h-5 w-5" />
+                </span>
+                Next check-in
+              </dt>
               <dd className="mt-1 text-xl font-medium">{nextCheckIn}</dd>
             </div>
           </dl>

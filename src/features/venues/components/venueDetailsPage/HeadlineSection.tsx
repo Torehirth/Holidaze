@@ -6,10 +6,12 @@ export const HeadlineSection = ({ venue }: VenueSectionProps) => {
     <>
       <header className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 id="venue-heading" className="text-2xl font-medium sm:text-3xl">
+          <h1
+            id="venue-heading"
+            className="overflow-hidden text-2xl font-medium wrap-break-word sm:text-3xl">
             {venue.name}
           </h1>
-          <p className="mt-2 flex items-center gap-2">
+          <p className="max-w- mt-2 flex items-center gap-2 wrap-anywhere">
             <MapPin aria-hidden="true" className="h-4 w-4" />
             {[venue.location.city, venue.location.country].filter(Boolean).join(", ") ||
               "Missing location"}

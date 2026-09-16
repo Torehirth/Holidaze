@@ -42,6 +42,9 @@ export const EditProfilePage = () => {
   return (
     <>
       <title>Edit profile | Holidaze</title>
+      <meta name="description" content="Update your Holidaze profile details." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <div className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           to="/profile"

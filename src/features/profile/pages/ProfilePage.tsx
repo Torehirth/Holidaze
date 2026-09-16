@@ -60,7 +60,20 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <title>{`${user.name ?? currentUser?.userName ?? "Profile"}'s profile | Holidaze`}</title>
+      <title>{`${isOwnProfile ? "My profile" : user.name} | Holidaze`}</title>
+      <meta
+        name="description"
+        content={
+          isOwnProfile
+            ? "Manage your Holidaze profile and bookings."
+            : `View ${user?.name ?? "this user"}'s public profile on Holidaze.`
+        }
+      />
+      <meta name="robots" content={isOwnProfile ? "noindex, nofollow" : "index, follow"} />
+      {!isOwnProfile && (
+        <link rel="canonical" href={`https://tmh-holidaze.netlify.app/profiles/${name}`} />
+      )}
+
       <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="sr-only">{user.name ? `${user.name}'s profile` : "Profile"}</h1>
         <UserSection isOwnProfile={isOwnProfile} user={user} />

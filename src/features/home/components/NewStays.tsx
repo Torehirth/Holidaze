@@ -4,6 +4,8 @@ import type { Venue } from "../../venues/types/venue";
 import { getVenues } from "../../venues/services/getVenues";
 import { Loader } from "../../../shared/components/ui/Loader";
 import { FeedbackMessage } from "../../../shared/components/ui/feedback/FeedbackMessage";
+import { NavLink } from "react-router";
+import { ArrowRight } from "lucide-react";
 
 export const NewStays = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -33,11 +35,20 @@ export const NewStays = () => {
   return (
     <section className="xs:-my-6 -my-8 px-4 sm:-mt-16 lg:mt-0 lg:px-12">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4">
-          <h2 className="text-xl font-medium">New Stays</h2>
-          <p>Discover new places for your next getaway</p>
+        <div className="mb-4 flex items-end justify-between">
+          <div>
+            <h2 className="text-xl font-medium">New Stays</h2>
+            <p>Discover new places for your next getaway</p>
+          </div>
+          <div>
+            <NavLink
+              to="/venues"
+              className="text-primary focus-within:ring-foreground flex items-center gap-0 text-sm wrap-anywhere whitespace-nowrap focus-within:ring hover:opacity-70 sm:gap-2 sm:whitespace-normal">
+              Explore all venues
+              <ArrowRight aria-hidden="true" className="text-primary h-4 w-4" />
+            </NavLink>
+          </div>
         </div>
-
         <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:overflow-visible">
           {loading && (
             <div className="flex w-full justify-center">
@@ -45,28 +56,13 @@ export const NewStays = () => {
             </div>
           )}
           {error && (
-            <FeedbackMessage
-              variant="error"
-              title="Loading venues failed"
-              message={error}
-            />
+            <FeedbackMessage variant="error" title="Loading venues failed" message={error} />
           )}
           {!error && !loading && (
             <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-4 lg:overflow-visible">
               {venues.map(
-                ({
-                  id,
-                  name,
-                  description,
-                  price,
-                  media,
-                  rating,
-                  location,
-                  maxGuests,
-                }) => (
-                  <li
-                    key={id}
-                    className="w-[85%] shrink-0 snap-start sm:w-[45%] lg:w-auto">
+                ({ id, name, description, price, media, rating, location, maxGuests }) => (
+                  <li key={id} className="w-[85%] shrink-0 snap-start sm:w-[45%] lg:w-auto">
                     <VenueCard
                       id={id}
                       name={name}

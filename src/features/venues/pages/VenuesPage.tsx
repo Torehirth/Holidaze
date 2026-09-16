@@ -6,7 +6,7 @@ import { FeedbackMessage } from "../../../shared/components/ui/feedback/Feedback
 import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useSearchParams } from "react-router";
-import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
+import { VenuesSearchForm } from "../../../shared/components/forms/search/VenuesSearchForm";
 
 export const VenuesPage = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -55,10 +55,21 @@ export const VenuesPage = () => {
 
   return (
     <>
-      <title>Venues | Holidaze</title>
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <title>All venues | Holidaze</title>
+      <meta
+        name="description"
+        content="Explore all available venues on Holidaze — filter by location, price and amenities."
+      />
+      <link rel="canonical" href="https://tmh-holidaze.netlify.app/venues" />
+      <meta property="og:title" content="All venues | Holidaze" />
+      <meta property="og:description" content="Explore all available venues on Holidaze." />
+      <meta property="og:image" content="https://tmh-holidaze.netlify.app/default_meta_og.jpg" />
+      <meta property="og:url" content="https://tmh-holidaze.netlify.app/venues" />
+
+      <section className="mx-auto w-full max-w-7xl px-4 py-2 pb-12 sm:px-6 lg:px-8 lg:py-6">
         <header className="mb-8">
-          <h1 className="text-2xl font-medium">Explore venues</h1>
+          <VenuesSearchForm variant="secondary" />
+          <h1 className="text-2xl font-medium lg:mt-4">Explore venues</h1>
           <p className="mt-2">Find the perfect place for your next stay.</p>
           <div>
             {!error && !loading && meta && (
@@ -75,11 +86,6 @@ export const VenuesPage = () => {
                   title="No venues found"
                   message={notFoundMessage}
                 />
-              </div>
-              <div className="mt-4 flex justify-center">
-                <ButtonLink to="/" variant="primary">
-                  Search again
-                </ButtonLink>
               </div>
             </div>
           )}

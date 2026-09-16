@@ -61,7 +61,10 @@ export const RegisterPage = () => {
 
   return (
     <>
-      <title>Register | Holidaze</title>
+      <title>Create an account | Holidaze</title>
+      <meta name="description" content="Sign up for a free Holidaze account." />
+      <meta name="robots" content="noindex, nofollow" />
+
       <section className="mx-auto mt-12 mb-8 flex max-w-md flex-col px-4 lg:mt-30">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-medium">Create your account </h1>
@@ -94,7 +97,6 @@ export const RegisterPage = () => {
               name="email"
               type="email"
               autoComplete="email"
-              title="Enter a valid stud.noroff.no email address"
               placeholder="name@stud.noroff.no"
               pattern="^[^\s@]+@stud\.noroff\.no$"
               required

@@ -46,6 +46,7 @@ export const VenueForm = ({
                 Venue name
               </label>
               <input
+                autoComplete="off"
                 id="venue-name"
                 type="text"
                 placeholder="Mountain View Cabin"
@@ -64,20 +65,18 @@ export const VenueForm = ({
                   },
                 })}
               />
-
               {errors.name && (
                 <p id="venue-name-error" className="text-destructive mt-2 text-sm">
                   {String(errors.name.message)}
                 </p>
               )}
             </div>
-
             <div>
               <label htmlFor="venue-description" className="text-sm font-medium">
                 Description
               </label>
-
               <textarea
+                autoComplete="off"
                 id="venue-description"
                 rows={4}
                 placeholder="Describe the venue, its surroundings and what makes it special..."
@@ -129,7 +128,9 @@ export const VenueForm = ({
               <label htmlFor="venue-image-url" className="text-sm font-medium">
                 Image URL
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-image-url"
                 type="url"
                 inputMode="url"
@@ -167,7 +168,9 @@ export const VenueForm = ({
               <label htmlFor="venue-image-alt" className="text-sm font-medium">
                 Alternative text
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-image-alt"
                 type="text"
                 placeholder="Cabin surrounded by mountains"
@@ -218,6 +221,7 @@ export const VenueForm = ({
                   $
                 </span>
                 <input
+                  autoComplete="off"
                   id="venue-price"
                   type="number"
                   min={0}
@@ -250,6 +254,7 @@ export const VenueForm = ({
                 Maximum guests
               </label>
               <input
+                autoComplete="off"
                 id="venue-max-guests"
                 type="number"
                 min={1}
@@ -295,6 +300,7 @@ export const VenueForm = ({
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-300 p-4 transition hover:bg-stone-50">
                 <input
+                  autoComplete="off"
                   type="checkbox"
                   className="accent-primary h-4 w-4 shrink-0"
                   {...register("meta.wifi")}
@@ -304,6 +310,7 @@ export const VenueForm = ({
               </label>
               <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-300 p-4 transition hover:bg-stone-50">
                 <input
+                  autoComplete="off"
                   type="checkbox"
                   className="accent-primary h-4 w-4 shrink-0"
                   {...register("meta.parking")}
@@ -313,6 +320,7 @@ export const VenueForm = ({
               </label>
               <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-300 p-4 transition hover:bg-stone-50">
                 <input
+                  autoComplete="off"
                   type="checkbox"
                   className="accent-primary h-4 w-4 shrink-0"
                   {...register("meta.breakfast")}
@@ -322,6 +330,7 @@ export const VenueForm = ({
               </label>
               <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-300 p-4 transition hover:bg-stone-50">
                 <input
+                  autoComplete="off"
                   type="checkbox"
                   className="accent-primary h-4 w-4 shrink-0"
                   {...register("meta.pets")}
@@ -349,9 +358,11 @@ export const VenueForm = ({
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label htmlFor="venue-address" className="text-sm font-medium">
-                Address <span className="text-muted-foreground font-normal">(optional)</span>
+                Address
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-address"
                 type="text"
                 placeholder="123 Mountain Road"
@@ -375,7 +386,9 @@ export const VenueForm = ({
               <label htmlFor="venue-city" className="text-sm font-medium">
                 City
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-city"
                 type="text"
                 placeholder="Voss"
@@ -397,9 +410,11 @@ export const VenueForm = ({
             </div>
             <div>
               <label htmlFor="venue-zip" className="text-sm font-medium">
-                ZIP code <span className="text-muted-foreground font-normal">(optional)</span>
+                ZIP code
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-zip"
                 type="text"
                 placeholder="5700"
@@ -423,7 +438,9 @@ export const VenueForm = ({
               <label htmlFor="venue-country" className="text-sm font-medium">
                 Country
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-country"
                 type="text"
                 placeholder="Norway"
@@ -445,9 +462,11 @@ export const VenueForm = ({
             </div>
             <div>
               <label htmlFor="venue-continent" className="text-sm font-medium">
-                Continent <span className="text-muted-foreground font-normal">(optional)</span>
+                Continent
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
+                autoComplete="off"
                 id="venue-continent"
                 type="text"
                 placeholder="Europe"

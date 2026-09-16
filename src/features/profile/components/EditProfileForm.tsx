@@ -88,6 +88,7 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
             Bio
           </label>
           <textarea
+            autoComplete="off"
             id="bio"
             name="bio"
             rows={5}
@@ -122,9 +123,10 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
           <div className="space-y-5">
             <div>
               <label htmlFor="avatar-url" className="text-sm font-medium">
-                Image URL
+                Avatar image URL
               </label>
               <input
+                autoComplete="off"
                 id="avatar-url"
                 name="avatarUrl"
                 type="url"
@@ -137,9 +139,10 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
             </div>
             <div>
               <label htmlFor="avatar-alt" className="text-sm font-medium">
-                Alternative text
+                Avatar alternative text
               </label>
               <input
+                autoComplete="off"
                 id="avatar-alt"
                 name="avatarAlt"
                 type="text"
@@ -177,9 +180,10 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="banner-url" className="text-sm font-medium">
-              Image URL
+              Banner image URL
             </label>
             <input
+              autoComplete="off"
               id="banner-url"
               name="bannerUrl"
               type="url"
@@ -192,9 +196,10 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
           </div>
           <div>
             <label htmlFor="banner-alt" className="text-sm font-medium">
-              Alternative text
+              Banner alternative text
             </label>
             <input
+              autoComplete="off"
               id="banner-alt"
               name="bannerAlt"
               type="text"
@@ -213,6 +218,7 @@ export const EditProfileForm = ({ currentUser, profile }: EditProfileFormProps) 
         </h2>
         <label className="mt-5 flex cursor-pointer items-start gap-3 rounded-xl border border-gray-400 p-4">
           <input
+            autoComplete="off"
             type="checkbox"
             name="venueManager"
             className="accent-primary mt-1 h-4 w-4 shrink-0"

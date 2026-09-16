@@ -35,7 +35,7 @@ export const UserSection = ({ user, isOwnProfile }: UserSectionProps) => {
           <div className="bg-card w-fit rounded-full border border-gray-300 p-1.5 shadow-sm">
             <img
               src={user.avatar.url || profilePlaceholderImage}
-              alt={user.avatar.alt || `${user.name}'s profile image`}
+              alt={user.avatar.alt || `${user.name}'s profile`}
               className="h-24 w-24 rounded-full object-cover object-center sm:h-28 sm:w-28"
             />
           </div>

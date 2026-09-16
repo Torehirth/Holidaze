@@ -13,8 +13,12 @@ export const HostSection = ({ venue }: VenueSectionProps) => {
           className="h-14 w-14 rounded-full object-cover hover:opacity-80 active:scale-[0.95]"
         />
         <div>
-          <h3 className="font-medium hover:opacity-80 active:scale-[0.95]">{venue.owner.name}</h3>
-          <p className="text-muted-foreground mt-1 text-sm">{venue.owner.bio ?? ""}</p>
+          <h3 className="font-medium wrap-anywhere hover:opacity-80 active:scale-[0.95]">
+            {venue.owner.name}
+          </h3>
+          <p className="text-muted-foreground mt-1 text-sm wrap-anywhere">
+            {venue.owner.bio ?? ""}
+          </p>
         </div>
       </Link>
     </section>

@@ -78,10 +78,10 @@ export const ViewVenueBookingsPage = () => {
             />
             <div className="from-accent to-background flex flex-col justify-center bg-linear-to-br p-6 sm:p-8">
               <p className="text-sm font-medium">Bookings for</p>
-              <h1 id="venue-heading" className="mt-1 text-3xl font-medium">
+              <h1 id="venue-heading" className="mt-1 text-3xl font-medium wrap-anywhere">
                 {venue.name}
               </h1>
-              <p className="mt-3 flex items-center gap-2">
+              <p className="mt-3 flex items-center gap-2 wrap-anywhere">
                 <MapPin aria-hidden="true" className="h-4 w-4 shrink-0" />
                 {venue.location.city && venue.location.country
                   ? `${venue.location.city}, ${venue.location.country}`
@@ -118,7 +118,7 @@ export const ViewVenueBookingsPage = () => {
             <h2 id="bookings-heading" className="text-2xl font-medium">
               Upcoming bookings
             </h2>
-            <p className="mt-1">Guests who are scheduled to stay at this venue.</p>
+            <p className="mt-2">Guests who are scheduled to stay at this venue.</p>
           </div>
           <ul className="space-y-5">
             {futureBookings.length > 0 ? (
@@ -128,7 +128,7 @@ export const ViewVenueBookingsPage = () => {
                 </li>
               ))
             ) : (
-              <p className="mx-auto mt-8 w-fit max-w-full text-lg">
+              <p className="mx-auto mt-8 w-fit max-w-full text-lg font-medium">
                 No upcoming bookings for this venue.
               </p>
             )}

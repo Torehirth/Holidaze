@@ -37,7 +37,9 @@ export const VenueCard = ({
         />
         <div className="space-y-3 p-4">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-foreground line-clamp-2 text-base font-medium">{name}</h3>
+            <h3 className="text-foreground overflow-hidden text-base font-medium text-ellipsis whitespace-nowrap">
+              {name}
+            </h3>
             <div className="flex shrink-0 items-center gap-1">
               <Star aria-hidden="true" className="h-4 w-4 fill-yellow-400 text-yellow-400" />
               <span className="text-sm" aria-hidden="true">
@@ -45,7 +47,9 @@ export const VenueCard = ({
               </span>
             </div>
           </div>
-          <p className="text-sm">{city || country || "Missing location"}</p>
+          <p className="overflow-hidden text-sm text-ellipsis whitespace-nowrap">
+            {city || country || "Missing location"}
+          </p>
           <div className="flex items-end justify-between">
             <p className="text-sm">
               <span className="font-semibold">{price}</span>

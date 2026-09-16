@@ -1,8 +1,8 @@
 import { useState, type SubmitEvent } from "react";
 import { Button } from "../../../../shared/components/ui/buttons/Button";
-import { Minus, Plus } from "lucide-react";
+import { ArrowRight, Minus, Plus } from "lucide-react";
 import { useAuth } from "../../../auth/hooks/useAuth";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { BookingCalendar } from "./BookingCalendar";
 import type { DateRange } from "@daypicker/react";
 import { formatDate } from "../../../../shared/utils/formatDate";
@@ -95,6 +95,17 @@ export const BookingSection = ({ venue, onBookingCreated }: BookingSectionProps)
       </div>
       <form aria-label="Book this venue" className="space-y-4" onSubmit={handleSubmit}>
         {success && <FeedbackMessage variant="success" message={success} />}
+        {success && (
+          <div className="flex flex-col items-center gap-1 text-sm">
+            <p>See all your bookings on your dashboard</p>
+            <div className="flex items-center gap-1">
+              <Link to="/profile" className="underline">
+                Dashboard
+              </Link>
+              <ArrowRight className="h-4 w-4" />
+            </div>
+          </div>
+        )}
         {error && <FeedbackMessage variant="error" message={error} />}
         <div>
           <BookingCalendar

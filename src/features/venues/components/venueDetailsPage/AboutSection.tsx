@@ -5,7 +5,7 @@ export const AboutSection = ({ venue }: VenueSectionProps) => {
   return (
     <section className="border-b border-gray-400 pb-8">
       <h2 className="mb-3 text-xl font-medium">About this venue</h2>
-      <p>{removeHTMLTags(venue.description)}</p>
+      <p className="overflow- wrap-anywhere">{removeHTMLTags(venue.description)}</p>
     </section>
   );
 };

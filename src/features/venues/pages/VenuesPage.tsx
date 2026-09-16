@@ -6,7 +6,6 @@ import { FeedbackMessage } from "../../../shared/components/ui/feedback/Feedback
 import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useSearchParams } from "react-router";
-import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
 import { VenuesSearchForm } from "../../../shared/components/forms/search/VenuesSearchForm";
 
 export const VenuesPage = () => {
@@ -87,11 +86,6 @@ export const VenuesPage = () => {
                   title="No venues found"
                   message={notFoundMessage}
                 />
-              </div>
-              <div className="mt-4 flex justify-center">
-                <ButtonLink to="/" variant="primary">
-                  Search again
-                </ButtonLink>
               </div>
             </div>
           )}

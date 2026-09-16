@@ -64,8 +64,8 @@ export const MyVenueCard = ({ venues, onDeleted }: VenueCardProps) => {
           {error && <FeedbackMessage variant="error" message={error} />}
           {loading && <Loader />}
           <div className="flex flex-col px-5 py-4">
-            <h3 className="text-xl font-medium">{venues.name}</h3>
-            <p className="mt-1 flex items-center gap-2 text-sm">
+            <h3 className="overflow-hidden text-xl font-medium wrap-anywhere">{venues.name}</h3>
+            <p className="mt-1 flex items-center gap-2 text-sm wrap-anywhere">
               <MapPin aria-hidden="true" className="h-4 w-4 shrink-0" />
               {venues.location.city && venues.location.country
                 ? `${venues.location.city}, ${venues.location.country}`

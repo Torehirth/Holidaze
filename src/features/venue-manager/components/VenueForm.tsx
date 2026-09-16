@@ -129,6 +129,7 @@ export const VenueForm = ({
               <label htmlFor="venue-image-url" className="text-sm font-medium">
                 Image URL
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-image-url"
                 type="url"
@@ -167,6 +168,8 @@ export const VenueForm = ({
               <label htmlFor="venue-image-alt" className="text-sm font-medium">
                 Alternative text
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
+
               <input
                 id="venue-image-alt"
                 type="text"
@@ -349,8 +352,9 @@ export const VenueForm = ({
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="sm:col-span-2">
               <label htmlFor="venue-address" className="text-sm font-medium">
-                Address <span className="text-muted-foreground font-normal">(optional)</span>
+                Address
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-address"
                 type="text"
@@ -375,6 +379,7 @@ export const VenueForm = ({
               <label htmlFor="venue-city" className="text-sm font-medium">
                 City
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-city"
                 type="text"
@@ -397,8 +402,9 @@ export const VenueForm = ({
             </div>
             <div>
               <label htmlFor="venue-zip" className="text-sm font-medium">
-                ZIP code <span className="text-muted-foreground font-normal">(optional)</span>
+                ZIP code
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-zip"
                 type="text"
@@ -423,6 +429,7 @@ export const VenueForm = ({
               <label htmlFor="venue-country" className="text-sm font-medium">
                 Country
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-country"
                 type="text"
@@ -445,8 +452,9 @@ export const VenueForm = ({
             </div>
             <div>
               <label htmlFor="venue-continent" className="text-sm font-medium">
-                Continent <span className="text-muted-foreground font-normal">(optional)</span>
+                Continent
               </label>
+              <span className="text-foreground/70 pl-2 text-sm">(optional)</span>
               <input
                 id="venue-continent"
                 type="text"

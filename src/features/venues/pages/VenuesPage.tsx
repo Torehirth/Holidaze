@@ -7,6 +7,7 @@ import { Loader } from "../../../shared/components/ui/Loader";
 import { Button } from "../../../shared/components/ui/buttons/Button";
 import { useSearchParams } from "react-router";
 import { ButtonLink } from "../../../shared/components/ui/buttons/ButtonLink";
+import { VenuesSearchForm } from "../../../shared/components/forms/search/VenuesSearchForm";
 
 export const VenuesPage = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
@@ -66,9 +67,10 @@ export const VenuesPage = () => {
       <meta property="og:image" content="https://tmh-holidaze.netlify.app/default_meta_og.jpg" />
       <meta property="og:url" content="https://tmh-holidaze.netlify.app/venues" />
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <section className="mx-auto w-full max-w-7xl px-4 py-2 pb-12 sm:px-6 lg:px-8 lg:py-6">
         <header className="mb-8">
-          <h1 className="text-2xl font-medium">Explore venues</h1>
+          <VenuesSearchForm variant="secondary" />
+          <h1 className="text-2xl font-medium lg:mt-4">Explore venues</h1>
           <p className="mt-2">Find the perfect place for your next stay.</p>
           <div>
             {!error && !loading && meta && (
